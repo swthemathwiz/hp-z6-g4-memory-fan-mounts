@@ -56,7 +56,7 @@ jobs:
         check_target: true
         extra_packages: pngcrush
         use_xvfb: true
-        local_libraries: true
+        local_libraries: false
     - name: Update Media Artifacts
       uses: swthemathwiz/openscad-actions/update-media-artifacts@v1
       with:
