@@ -1,0 +1,7 @@
+*.stl
+*.png
+*.bak
+.deps
+media
+libraries
+Delta-*.STL

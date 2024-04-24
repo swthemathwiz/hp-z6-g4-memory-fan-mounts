@@ -1,0 +1,68 @@
+name: 'Update Media'
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Commit message'
+        default: 'Update media'
+        required: true
+      stls:
+        description: 'STLs'
+        type: boolean
+        default: true
+        required: true
+      icons:
+        description: 'Icons'
+        type: boolean
+        default: true
+        required: true
+      images:
+        description: 'Images'
+        type: boolean
+        default: false
+        required: true
+      dry_run:
+        description: 'Dry-run'
+        type: boolean
+        default: false
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set Target
+      id: target
+      shell: bash
+      run: |
+        # Consolidate target to a string
+        target=()
+        if [ '${{ github.event.inputs.stls }}' = 'true' ]; then
+          target+=('all')
+        fi
+        if [ '${{ github.event.inputs.images }}' = 'true' ]; then
+          target+=('images')
+        fi
+        if [ '${{ github.event.inputs.icons }}' = 'true' ]; then
+          target+=('icons')
+        fi
+        echo "Target: ${target[@]}"
+        echo "TARGETS=$(echo ${target[@]})" >> $GITHUB_OUTPUT
+    - name: Build Media Artifacts
+      uses: swthemathwiz/openscad-actions/build@v1
+      with:
+        target: '${{ steps.target.outputs.TARGETS }}'
+        check_target: true
+        extra_packages: pngcrush
+        use_xvfb: true
+        local_libraries: true
+    - name: Update Media Artifacts
+      uses: swthemathwiz/openscad-actions/update-media-artifacts@v1
+      with:
+        message: '${{ github.event.inputs.message }}'
+        dry_run: '${{ github.event.inputs.dry_run }}'
+        files: 'png stl'
+        files_except: '*-infill.*'
+        media_branch: 'media'
+        media_subdirectory: 'media'
