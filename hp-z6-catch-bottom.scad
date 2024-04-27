@@ -16,8 +16,7 @@ include <mitered.scad>;
 // Catch refers to the top area of the "mound". Radius is nominal.
 //
 // bottom_catch_size: length, width
-//bottom_catch_size = [ 61, 16 ];
-bottom_catch_size = [ 61, 12 ];
+bottom_catch_size = [ 68, 5 ];
 bottom_catch_radius = 1;
 
 // Slot:
@@ -72,7 +71,7 @@ module bottom_catch_tang( style ) {
   }
   // tilt: tilted toward one side, with taper
   else if( style == "tilt" ) {
-echo( "bottom tang [ width, depth ] = ", [ size.x, size.z ] );
+    //echo( "bottom tang [ width, depth ] = ", [ size.x, size.z ] );
     translate( [0,-size.y/2,0] )
       intersection() {
 	linear_extrude( height = size.z )
