@@ -53,7 +53,7 @@ top_box_multiplier = 0.8;
 top_hollow_thickness = 0.8;
 
 // For layout testing: (match main mount file)
-top_layout_offsets = [6.3, 85.2, 9.055];
+top_layout_offsets = [6.3, 85.6, 9.055];
 
 // top_catch_rounded_hollow: rounded hollow cube
 module top_catch_rounded_hollow( size, radius, thickness ) {
@@ -94,7 +94,7 @@ module top_tang_simple( tip_profile, tang_profile, notch_profile ) {
   // l => length of the tang
   // w => width of the tang
   let( y = tip_thickness, p = tang_pivot, h = round_to_tenths(tang_height), l = round_to_tenths(tang_length), w=round_to_tenths(tip_width), ni = notch_depth, nh = notch_height ) {
-echo( "top tang [ width, height, depth ] =",  [w, h, l] );
+    //echo( "top tang [ width, height, depth ] =",  [w, h, l] );
     linear_extrude( height=w, center=true, convexity=20 ) {
       polygon([ [0,0], [0,nh], [ni,nh], [ni,y+h], [p,y+h], [l,+h/2], [l,0] ]);
     }
@@ -133,7 +133,7 @@ module top_tang_elliptical( tip_profile, tang_profile, notch_profile ) {
   // p => pivot height
   // o => pivot indent location (based on angle)
   let( h = round_to_tenths(tang_height), w = round_to_tenths(tip_width), d = round_to_tenths(tip_depth), p = tang_pivot, o = notch_depth + (h-p)*sin(tang_angle), ni = notch_depth, nh = notch_height ) {
-echo( "top tang [ width, height, depth ] =",  [w, round_to_tenths(h-tip_thickness), d] );
+    //echo( "top tang [ width, height, depth ] =",  [w, round_to_tenths(h-tip_thickness), d] );
     intersection() {
       // A little oversize across width (which will be clipped)
       ellipsoid( 2*d, 2*h, width_multiplier*w );
@@ -235,7 +235,7 @@ module top_catch_base( style, height ) {
   }
   // layout: test out the distance to cage
   else if( style == "layout" ) {
-    echo( "top tab offset =", top_layout_offsets );
+    echo( "top tab layout offset =", top_layout_offsets );
 
     difference() {
       rounded_side_cube_upper( size, top_catch_radius );
