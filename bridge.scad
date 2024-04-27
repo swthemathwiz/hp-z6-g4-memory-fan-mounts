@@ -55,12 +55,12 @@ module bridge_squares( size1, pos1, size2, pos2, width, radius=0 ) {
 } // end bridge_squares
 
 // bridge_cubes: bridge two 3D cubes
-module bridge_cubes( size1, pos1, size2, pos2, width, height, radius=0 ) {
+module bridge_cubes( size1, pos1, size2, pos2, width, height, radius=0, convexity=10 ) {
   assert( is_list(size1) && len(size1) >= 3 );
   assert( is_list(size2) && len(size2) >= 3 );
 
   h = is_undef(height) ? min( size1.z, size2.z ) : height;
-  linear_extrude( height=h )
+  linear_extrude( height=h, convexity=convexity )
     bridge_squares( size1, pos1, size2, pos2, width, radius );
 } // end bridge_cubes
 
