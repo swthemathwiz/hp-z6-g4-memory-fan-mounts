@@ -25,6 +25,9 @@ model = "single"; // [ "single", "dual" ]
 // Show mount (others for debugging)
 show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan" ]
 
+// Limit width of model in case of dual mounts (or 0 for no limit)
+model_width_limit = 210; // [195:5:265]
+
 /* [Primary Fan] */
 
 // Primary Fan model
@@ -61,9 +64,6 @@ sec_bridge_width  = 6; // [3:1:12]
 
 // Primary to secondary bridge count and offsets (mm)
 sec_bridge_pos = [-5,+10,+25];
-
-// Limit width of bridge based on entire model for printing (or 0)
-sec_bridge_model_limit = 210; // [195:5:265]
 
 /* [Baffle] */
 
@@ -136,7 +136,7 @@ pri_baffle_inside_to_outside = pri_baffle_total_size.y-baffle_effective_side_thi
 //       is the intersection of the mid-points of the slots with
 //       the center of the tab.
 
-// Position of bottom catch (our machine origin)
+// Position of bottom catch (constant - our machine origin)
 machine_bottom_catch_center = [ 0, 0, 0+0 ];
 
 // Distance to center of top tabs above top of catch (mm)
@@ -154,34 +154,35 @@ machine_catch_to_baffle_rear = -bottom_catch_get_tang_width()/2;
 // Distance from middle of baffle to catch (mm)
 machine_catch_to_baffle_middle = -4.7;
 
-// Distance to center of top tabs above top of catch (mm)
+// Distance up to center of top tabs above top of catch (mm)
 machine_tabs_to_catch_top = machine_case_to_catch_top;
 
-// Distance to center of top tabs from mid-catch slots (mm)
+// Distance forward to center of top tabs rear of baffle (mm)
 machine_tabs_to_baffle_rear = 7.6;
 
-// Distance to center of top tabs from mid-catch slots (mm)
-machine_tabs_to_catch_middle = +6.3; // 1.6mm past <machine_catch_to_baffle_middle>
+// Distance right-left to center of top tabs from mid-catch slots (mm)
+machine_tabs_to_catch_middle = 6.3;
 
 // Position of mid-point of the two top insertion tabs from machine origin
 machine_top_tabs_center = [ machine_tabs_to_catch_middle, machine_tabs_to_catch_top, machine_tabs_to_baffle_rear - machine_catch_to_baffle_rear ];
 
-// Position of middle DIMM slot relative to mid-catch slots (mm)
-machine_middle_dimm_to_catch_middle = 125;
+// Distance of middle top DIMM slot to mid-catch slots (mm)
+//machine_middle_dimm_to_catch_middle = 125;
+machine_middle_dimm_to_catch_middle = 127;
 
-// For repositioning larger fans
+// Used to reposition primary fans larger than 80x80
 machine_baffle_total_size = baffle_get_total_size( fan_get_spec("80x80x25") );
 
 // Mapping of machine position to build position
 //
-// N.B.: For fans > 80mm, automatically slide the fan toward
+// N.B.: For primary fans > 80mm, automatically slide the fan toward
 // the bottom of the case (to avoid blocker and wiring)
 //
 function machine_to_model( p ) = [ p.x + machine_catch_to_baffle_middle + (pri_baffle_total_size.x-machine_baffle_total_size.x)/2,
                                    p.y - pri_baffle_total_size.y/2 - machine_catch_to_baffle_bottom,
                                    p.z + pri_baffle_total_size.z + machine_catch_to_baffle_rear ];
 
-// Middle point coordinates
+// Model middle point (0,0,0) coordinates in our machine axis
 machine_model_middle = -machine_to_model( [0,0,0] );
 
 // Position of secondary fan - center x/y
@@ -489,6 +490,8 @@ module single_mount() {
 // A dual mount - two connected baffles
 //
 module dual_mount() {
+  function model_width( pos1, size1, pos2, size2 ) = (pos2.x + size2.x/2) - (pos1.x - size1.x/2);
+
   // Primary fan
   single_mount();
 
@@ -500,14 +503,18 @@ module dual_mount() {
 
     // Secondary fan size and center position
     //
-    // Limit the width of the model if necessary
-    //
     sec_fan_size        = baffle_get_area_with_height( sec_fan_spec, baffle_side_height_min );
     sec_fan_ideal_pos   = sec_fan_get_model_pos();
-    sec_fan_model_width = (sec_fan_ideal_pos.x + sec_fan_size.x/2) - (pri_fan_pos.x - pri_fan_size.x/2);
-    sec_fan_pos         = sec_fan_ideal_pos - [ ((sec_bridge_model_limit > 0) && (sec_fan_model_width > sec_bridge_model_limit)) ? sec_fan_model_width - sec_bridge_model_limit : 0, 0 ];
+
+    //
+    // Limit the width of the model if requested by moving
+    // secondary fan closer to primary
+    //
+    sec_fan_model_width = model_width( pri_fan_pos, pri_fan_size, sec_fan_ideal_pos, sec_fan_size );
+    sec_fan_pos         = sec_fan_ideal_pos - [ ((model_width_limit > 0) && (sec_fan_model_width > model_width_limit)) ? sec_fan_model_width - model_width_limit : 0, 0 ];
     if( sec_fan_pos != sec_fan_ideal_pos )
-      echo( "Secondary fan position limited by:", sec_fan_model_width-sec_bridge_model_limit );
+      echo( "Secondary fan limited by = ", sec_fan_model_width-model_width_limit );
+    echo( "Total Width = ", model_width( pri_fan_pos, pri_fan_size, sec_fan_pos, sec_fan_size ) );
 
     // Fan
     translate( sec_fan_pos - [ SMIDGE, 0, 0 ] ) baffle( sec_fan_spec, sec_fan_baffle_expansion );
@@ -547,5 +554,4 @@ intersection() {
     show_machine(axis=true);
 }
 //echo( "top tab layout offset =",  machine_top_tabs_center );
-$vpd = 400;
-
+//echo( "bottom baffle height offset =",  machine_catch_to_baffle_bottom );
