@@ -22,15 +22,15 @@ size past 32GB on a single CPU setup, it's probably sufficient.
 
 ## Model and Parts
 
-Three models are included:
+Three models are produced:
 
 <div class="model" data-name="HP Z6 G4 Single 80 Memory Fan Mount" data-icon-size="128" data-left-icon="hp-z6-memory-fan-mount-single-80.icon.png" data-left="hp-z6-memory-fan-mount-single-80.stl">
 
 ### HP Z6 G4 Single 80 Memory Fan Mount
 
-Replacement fan mount for the HP 80 mm front memory fan. It is installed just
-like the OEM mount between the drive cage and the motherboard in the middle part of an
-HP Z6 G4 workstation.
+Replacement fan mount for the HP front memory fan. It is installed just
+like the OEM mount between the drive cage and the motherboard in the
+middle part of an HP Z6 G4 workstation.
 
 </div>
 
@@ -38,10 +38,10 @@ HP Z6 G4 workstation.
 
 ### HP Z6 G4 Dual 80/80 Memory Fan Mount
 
-Replaces the single front memory fan with a dual 80 mm fan setup. Installed in the
+Replaces the single front memory fan with a dual 80-mm fan setup. Installed in the
 area between the drive area and motherboard on an HP Z6 G4 workstation. The
-secondary fan hangs off the primary memory fan and is aligned
-with the upper set of DIMMs. 
+secondary fan hangs off the primary memory fan and is centered
+on the set of DIMMs between the CPU and PSU.
 
 </div>
 
@@ -49,54 +49,54 @@ with the upper set of DIMMs.
 
 ### HP Z6 G4 Dual 80/92 Memory Fan Mount
 
-Like the Dual 80/80 mount, except with a 92 mm secondary fan.
+Like the dual 80/80 mount but with a 92 mm secondary fan.
 
 </div>
 
 ## A Note on HP Workstation 4-Pin Fan Connectors
 
 The "standard" 4-pin HP Workstation fan connector is somewhat proprietary mechanically. Older fans tend
-to have four color-coded wires and a reddish-brown connector ([JWT A2548H00-4P](http://www.jwt.com.tw/pro_pdf/A2548.pdf)).
-Newer ones seem to have all black wires with a natural (white) connector (e.g. [Molex 22-01-3047](https://www.molex.com/en-us/products/part-detail/22013047)).
-These connectors are polarized - both ends of the connector have small ribs. This differs from
-4-pin PC-style PWM fans which have a 3+1 key ([Molex 47054-1000](https://www.molex.com/en-us/products/part-detail/470541000)).
+to have four color-coded wires and a reddish-brown connector (e.g. [JWT A2548H00-4P](http://www.jwt.com.tw/pro_pdf/A2548.pdf)).
+Newer fans come with black wires and a white connector (e.g. [Molex 22-01-3047](https://www.molex.com/en-us/products/part-detail/22013047)).
+These connectors are polarized - both ends of the connector have small ribs. They differ from
+4-pin PC-style PWM fans which have a 3+1 keying (see [Molex 47054-1000](https://www.molex.com/en-us/products/part-detail/470541000)).
 
 Electrically, both PC- and HP-style are compatible and the signals are compatible
 and in the same order: Ground, +12VDC, RPM sense, PWM control.
 
-If you want to connect an after-market (i.e. "normal") PC-style PWM fan to an HP-style
-motherboard header, you'll have to modify the connector. You can do this either by shaving
-the middle key on the PC-style connector or by transplanting the crimped terminals to
-an HP-style connector.
+If you want to connect a PC-style PWM fan to an HP-style motherboard header, you
+need to modify the connector. You can do this either by shaving the middle key
+on the PC-style connector or by transplanting the terminals to an HP-style connector.
 
 ## What You'll Need...
 
 ### ...for the Single Mount
 
-If you're missing a front memory fan, then you'll need a fan, otherwise, you can
+If you're missing a front memory fan, then you'll need a fan. Otherwise, you can
 reuse the existing fan and just add the guard and case fan screws.
 Note that the dual mount replaces the existing single memory fan mount,
 so to some extent the same directions apply.
 
-#### An HP-Compatible 80 mm Fan
+#### An HP-Compatible 80-mm Fan
 
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
 Generally, you'll want to buy (or scavenge) an HP-compatible 80 mm x 25 mm PWM
-+12VDC fan that has an HP-specific 4-pin connector and a cable length of about 4 inches.
++12VDC fan that has an HP-specific 4-pin connector and a cable length of about
+3 inches or more.
 
 The stock memory fan is a Foxconn PVA080G12Q (0.65A max, 0.35A nominal)
-(HP: 907246-001) 12VDC PWM fan. Note that this fan is very common on ebay with
+(HP: 907246-001) +12VDC PWM fan. Note that this fan is very common on ebay with
 PC-style connector, so make sure you know what you're getting into. I can't find
-a lot of 80 mm fans with the HP-style connector, so you might be stuck with ordering
-a stock Z6 memory fan. Some other 80 mm fans I saw an HP-style connector:
+a lot of 80-mm fans with the HP-style connector, so you might be stuck with ordering
+a stock Z6 memory fan. Some other 80-mm fans I saw an HP-style connector:
 
 - AVC DL08025R12U (0.50A) from HP 400 G3 SFF series (both styles)
 
 I reused the stock fan and have not tested any other fans as the primary
 memory fan.
 
-#### An 80 mm Fan Guard <a name="guard" />
+#### An 80-mm Fan Guard <a name="guard" />
 
 <img src="../media/media/guard.jpg" alt="Fan Guard" align="right" width="180px" height="180px" />
 
@@ -115,32 +115,34 @@ coarse thread. Skip the plastic push-pins/rivets and rubber connectors.
 ### ...for the Dual Mount
 
 The dual mount adds an additional fan that hangs off the primary
-mount. There's cabling, which you have to build, and a second fan
+mount. There's an adapter cable, which you have to build, and a second fan
 to install in the mount.
 
-#### Cabling
+#### Adapter Cable <a name="cable" />
+
+The material here was taken in part from:
+[u/chestertonfan](https://www.reddit.com/r/HSpecWorkstations/comments/1aovkmw/hp_z6_g4_ram_upgrade_and_how_to_prevent_memory/),
+[Doug Lomax](https://www.youtube.com/watch?v=z3HnZJ8g-cU), and
+[Snoopmasta](https://h30434.www3.hp.com/t5/Business-PCs-Workstations-and-Point-of-Sale-Systems/PIN-out-of-Z440-memory-fan-connector/td-p/9013593).
 
 The connector on the motherboard for the second memory fan is intended
 to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001) and
-is nonstandard. The shroud contains a single blower-style fan. The OEM fan is a Foxconn
-PVB090G12L-P01-AB +12VDC (0.88A max, 0.70A nominal) 90 mm PWM Fan (HP: 907245-001).
+is nonstandard.
 
 The motherboard's 4-pin (2x2) connector is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
 and is actually a Blind-Mate Interface (BMI) part [Molex 44432-0401](https://www.molex.com/en-us/products/part-detail/444320401),
-which would make the part on the shroud [Molex 44133-0400](https://www.molex.com/en-us/products/part-detail/441330400).
+which makes the part on the shroud [Molex 44133-0400](https://www.molex.com/en-us/products/part-detail/441330400).
 The location and pin-out are as follows:
 
-**Pin-out** TBD.
+**Pin-out to be finalized.**
 
 <p align="center"><img src="../media/media/pinout.jpg" alt="MEMFAN Pinout" height="350px" /></p>
 
 We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400) connector
 and bring the signals out to a "standard" fan connector by building a
-cable.
-
-There are many ways to construct the cable to connect a fan to that
+cable. There are many ways to construct the cable to connect a fan to that
 header. What I did was use a precrimped Molex cable (crimping Molex
-Mini-Fit is hard) and crimped on a 4-Pin Fan Header (easier to crimp). I ordered
+Micro-Fit is hard) and crimped on a 4-Pin Fan Header (easier to crimp). I ordered
 parts from Aliexpress:
 
 - [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html) - pre-crimped Molex wiring
@@ -149,14 +151,23 @@ parts from Aliexpress:
 The shrouded fan header is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
 and is sometimes referred to as Molex 2540, but that is not a valid part number.
 
-#### A Second Fan (80 mm or 92 mm), Another Fan Guard, and Four More Case Fan Screws
+#### A Second 80- or 92-mm Fan, Another Fan Guard, and Four More Case Fan Screws
 
-Assuming you've made the cable yourself, and used the suggested standard PC-style
-wiring and connector, then a matching 80 mm Foxconn PVA080G12Q with the PC-style
-connector seems like an obvious choice. They are cheap and plentiful on
-ebay.
+For reference, the OEM shroud contains a single blower-style fan. The OEM fan is a Foxconn
+PVB090G12L-P01-AB +12VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
 
-You can also go with a 92 mm fan.
+For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
+a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
+plentiful on ebay.
+
+You can also go with a 92-mm fan. Here are some HP-compatible fans I've
+seen on ebay:
+
+- Foxconn PV902512PSPF (0.40A) from HP/Compaq DCxx00 (HP: 435452-001, 432768-001, 451144-001)
+- Nidec T92T12MS3A7-57A03 (0.35A) from the Zxx0 series (HP: 647113-001 Rev. B, 749598-001, and 782506-001)
+- Delta QUR0912VH (0.60A) from the Z4x0 series (HP: 647113-001 Rev. A)
+- Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
+- Delta AUB0912HH (0.40A) (HP: 411456-001)
 
 See above for recommendations on the [fan guard](#guard) and [case fan screws](#screws).
 
