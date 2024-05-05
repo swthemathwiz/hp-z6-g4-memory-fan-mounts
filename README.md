@@ -122,26 +122,28 @@ to install in the mount.
 
 The connector on the motherboard for the second memory fan is intended
 to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001) and
-is not standard. The shroud contains a single blower-style fan. The OEM fan is a Foxconn
+is nonstandard. The shroud contains a single blower-style fan. The OEM fan is a Foxconn
 PVB090G12L-P01-AB +12VDC (0.88A max, 0.70A nominal) 90 mm PWM Fan (HP: 907245-001).
-The location and pin-out are as follows:
 
-The motherboards 4-pin (2x2) connector is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
+The motherboard's 4-pin (2x2) connector is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
 and is actually a Blind-Mate Interface (BMI) part [Molex 44432-0401](https://www.molex.com/en-us/products/part-detail/444320401),
 which would make the part on the shroud [Molex 44133-0400](https://www.molex.com/en-us/products/part-detail/441330400).
+The location and pin-out are as follows:
 
 **Pin-out** TBD.
 
 <p align="center"><img src="../media/media/pinout.jpg" alt="MEMFAN Pinout" height="350px" /></p>
 
-This connects to a 2x2 [Molex 39-01-3045](https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/555/5557/039012045_sd.pdf?inline) connector.
+We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400) connector
+and bring the signals out to a "standard" fan connector by building a
+cable.
 
 There are many ways to construct the cable to connect a fan to that
 header. What I did was use a precrimped Molex cable (crimping Molex
 Mini-Fit is hard) and crimped on a 4-Pin Fan Header (easier to crimp). I ordered
 parts from Aliexpress:
 
-- [2x2P - Mini-Fit Male](https://www.aliexpress.us/item/3256801843724035.html) - pre-crimped Molex wiring
+- [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html) - pre-crimped Molex wiring
 - [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.us/item/2255799913539129.html) - crimpable shrouded fan headers
 
 The shrouded fan header is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
