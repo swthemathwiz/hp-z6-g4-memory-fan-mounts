@@ -120,14 +120,14 @@ to install in the mount.
 
 #### Adapter Cable <a name="cable" />
 
-The material here was taken in part from:
+This information was taken or derived partially from:
 [u/chestertonfan](https://www.reddit.com/r/HSpecWorkstations/comments/1aovkmw/hp_z6_g4_ram_upgrade_and_how_to_prevent_memory/),
 [Doug Lomax](https://www.youtube.com/watch?v=z3HnZJ8g-cU), and
 [Snoopmasta](https://h30434.www3.hp.com/t5/Business-PCs-Workstations-and-Point-of-Sale-Systems/PIN-out-of-Z440-memory-fan-connector/td-p/9013593).
 
 The connector on the motherboard for the second memory fan is intended
-to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001) and
-is nonstandard.
+to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001).
+Mechanically it is, of course, nonstandard.
 
 The motherboard's 4-pin (2x2) connector is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
 and is actually a Blind-Mate Interface (BMI) part [Molex 44432-0401](https://www.molex.com/en-us/products/part-detail/444320401),
@@ -141,15 +141,15 @@ The location and pin-out are as follows:
 We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400) connector
 and bring the signals out to a "standard" fan connector by building a
 cable. There are many ways to construct the cable to connect a fan to that
-header. What I did was use a precrimped Molex cable (crimping Molex
+header. What I did was use a pre-crimped Molex cable (crimping Molex
 Micro-Fit is hard) and crimped on a 4-Pin Fan Header (easier to crimp). I ordered
 parts from Aliexpress:
 
-- [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html) - pre-crimped Molex wiring
-- [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.us/item/2255799913539129.html) - crimpable shrouded fan headers
-
-The shrouded fan header is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
-and is sometimes referred to as Molex 2540, but that is not a valid part number.
+- [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html):
+  Pre-crimped wiring.
+- [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.us/item/2255799913539129.html):
+  Shrouded PC-style fan housing and crimp pins. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
+  and is sometimes referred incorrectly as Molex 2540.
 
 #### A Second 80- or 92-mm Fan, Another Fan Guard, and Four More Case Fan Screws
 
