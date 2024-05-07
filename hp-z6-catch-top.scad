@@ -48,7 +48,6 @@ top_box_center = [ 0, 0 ];
 //   [ width, height (excess), depth ] = [ 7.6, 1.4, 3.65 ]
 //
 top_tang_multiplier = [ 0.92, 0.9, 0.9 ];
-//top_box_multiplier = 0.9;
 top_box_multiplier = 0.8;
 top_hollow_thickness = 0.8;
 
