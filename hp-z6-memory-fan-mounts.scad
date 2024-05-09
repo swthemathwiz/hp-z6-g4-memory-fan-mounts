@@ -478,21 +478,18 @@ module single_mount() {
     platform_w = baffle_get_area( pri_fan_spec ).x;
     platform_t = baffle_effective_side_thickness;
 
-    translate( machine_to_model( [machine_model_middle.x, machine_top_tabs_center.y + platform_t/2, machine_top_tabs_center.z] ) - [ 0, 0, platform_h/2 ] ) {
-      rotate( [ 90, 0, 0 ] )
-	rounded_side_cube( [ platform_w, platform_h, platform_t ], center=true, radius=baffle_radius );
+    translate( machine_to_model( [machine_model_middle.x, machine_top_tabs_center.y + platform_t/2, machine_top_tabs_center.z] ) ) {
+      // Platform itself
+      translate( [ 0,0, -platform_h/2 ] )
+	rotate( [ 90, 0, 0 ] )
+	  rounded_side_cube( [ platform_w, platform_h, platform_t ], center=true, radius=baffle_radius );
 
-      // Gussets
-      for( q = [1:4] ) {
-	qodd  = (q == 1 || q == 3) ? +1 : -1;
-	qeven = (q == 2 || q == 4) ? +1 : -1;
-	qlow  = (q == 1 || q == 2) ? +1 : -1;
-	qhigh = (q == 3 || q == 4) ? +1 : -1;
-	qmid  = (q == 2 || q == 3) ? +1 : -1;
-	translate( [ qodd*(platform_w/2 - (qhigh>0? baffle_effective_side_thickness : 0)), qlow*platform_t/2, platform_h/2 - machine_tabs_to_baffle_rear ] )
-	  rotate( [ 0,qmid*90,0] )
-	    round_gusset_3d( machine_tabs_to_baffle_rear/2, baffle_effective_side_thickness, quadrant=q );
-      }
+      // Platform side gussets
+      foreach_side_mirrored( [1,3] )
+        foreach_side_mirrored( [2,3] )
+          translate( [ +platform_w/2, platform_t/2-SMIDGE, -machine_tabs_to_baffle_rear-SMIDGE ] ) 
+	    rotate( [ 0, -90, 0 ] )
+	      round_gusset_3d( machine_tabs_to_baffle_rear/2, baffle_effective_side_thickness, quadrant=1 );
     }
   } // end top_catch_platform
 
