@@ -146,7 +146,6 @@ machine_case_to_catch_top = 85.6; // As measured, width inside (81.8) + base hei
 pri_fan_is_oversize = machine_case_to_catch_top-pri_baffle_inside_to_outside < 0;
 
 // Distance from baffle bottom to machine (mm)
-//machine_catch_to_baffle_bottom = pri_fan_is_oversize ? 1 : machine_case_to_catch_top-pri_baffle_inside_to_outside;
 machine_catch_to_baffle_bottom = 1.2;
 
 // Distance from baffle front to bottom catch center (mm)
@@ -170,7 +169,9 @@ machine_top_tabs_center = [ machine_tabs_to_catch_middle, machine_tabs_to_catch_
 // Distance of middle top DIMM slot to mid-catch slots (mm)
 machine_middle_dimm_to_catch_middle = 127;
 
-// Used to reposition primary fans larger than 80x80
+/* [Hidden] */
+
+// Used to reposition primary fans larger than stock 80x80
 machine_baffle_total_size = baffle_get_total_size( fan_get_spec("80x80x25") );
 
 // Mapping of machine position to build position
@@ -209,7 +210,7 @@ function sec_fan_get_model_pos() = [ machine_to_model( machine_second_fan_bottom
 // Slant the top of the fan baffle back to match the top catch position
 //
 
-// Distance we need to make up to make top catch meet the machinve
+// Distance we need to make up to make top catch meet the machine
 pri_fan_slant_makeup_distance = pri_fan_is_oversize ? 0 : machine_case_to_catch_top - pri_baffle_inside_to_outside - machine_catch_to_baffle_bottom;
 
 function baffle_to_top_inside_slant_angle()  = atan2( pri_fan_slant_makeup_distance, pri_fan_baffle_total_height - baffle_thickness + baffle_fan_spacing_radius );
