@@ -92,6 +92,7 @@ a lot of 80-mm fans with the HP-style connector, so you might be stuck with orde
 a stock Z6 memory fan. Some other 80-mm fans I saw an HP-style connector:
 
 - AVC DL08025R12U (0.50A) from HP 400 G3 SFF series (both styles)
+- FOXCONN PVA080G12R (0.80A) (various styles)
 
 I reused the stock fan and have not tested any other fans as the primary
 memory fan.
