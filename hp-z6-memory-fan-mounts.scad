@@ -13,6 +13,7 @@ include <fan.scad>;
 include <screw-hole.scad>;
 include <slanted.scad>;
 include <bridge.scad>;
+include <gusset.scad>;
 
 use <hp-z6-catch-bottom.scad>;
 use <hp-z6-catch-top.scad>;
@@ -471,13 +472,28 @@ module single_mount() {
     }
   } // end thumbnail
 
-  // top_catch_platform: build a platform for the top catch (for oversize fans)
+  // top_catch_platform: build a simple platform for the top catch (for oversize fans)
   module top_catch_platform() {
-    platform_w = baffle_thickness+baffle_extra_height + machine_tabs_to_baffle_rear;
+    platform_h = baffle_thickness + baffle_extra_height + machine_tabs_to_baffle_rear;
+    platform_w = baffle_get_area( pri_fan_spec ).x;
+    platform_t = baffle_effective_side_thickness;
 
-    translate( machine_to_model( [machine_model_middle.x, machine_top_tabs_center.y + baffle_effective_side_thickness/2, machine_top_tabs_center.z] ) - [ 0, 0, platform_w/2 ] )
+    translate( machine_to_model( [machine_model_middle.x, machine_top_tabs_center.y + platform_t/2, machine_top_tabs_center.z] ) - [ 0, 0, platform_h/2 ] ) {
       rotate( [ 90, 0, 0 ] )
-	rounded_side_cube( [ baffle_get_area( pri_fan_spec ).x, platform_w, baffle_effective_side_thickness ], center=true, radius=baffle_radius );
+	rounded_side_cube( [ platform_w, platform_h, platform_t ], center=true, radius=baffle_radius );
+
+      // Gussets
+      for( q = [1:4] ) {
+	qodd  = (q == 1 || q == 3) ? +1 : -1;
+	qeven = (q == 2 || q == 4) ? +1 : -1;
+	qlow  = (q == 1 || q == 2) ? +1 : -1;
+	qhigh = (q == 3 || q == 4) ? +1 : -1;
+	qmid  = (q == 2 || q == 3) ? +1 : -1;
+	translate( [ qodd*(platform_w/2 - (qhigh>0? baffle_effective_side_thickness : 0)), qlow*platform_t/2, platform_h/2 - machine_tabs_to_baffle_rear ] )
+	  rotate( [ 0,qmid*90,0] )
+	    round_gusset_3d( machine_tabs_to_baffle_rear/2, baffle_effective_side_thickness, quadrant=q );
+      }
+    }
   } // end top_catch_platform
 
   // Fan
