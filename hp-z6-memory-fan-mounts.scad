@@ -11,7 +11,7 @@ include <smidge.scad>;
 include <rounded.scad>;
 include <fan.scad>;
 include <screw-hole.scad>;
-include <mitered.scad>;
+include <slanted.scad>;
 include <bridge.scad>;
 
 use <hp-z6-catch-bottom.scad>;
@@ -83,7 +83,7 @@ baffle_radius = 2; // [0:0.5:5]
 baffle_air_hole_slant = 80; // [70:5:90]
 
 // Extra space between fan and baffle (mm per side)
-baffle_fan_spacing_side = 0.4; // [0.1:0.1:1]
+baffle_fan_spacing_side = 0.2; // [0.0:0.1:1]
 
 // Decorative radius in space between fan and baffle (mm)
 baffle_fan_spacing_radius = 0.5; // [0:0.1:2]
@@ -106,7 +106,7 @@ baffle_screw_hole_oversize = true;
 // Extra space cut out baffle for fan (mm per side)
 baffle_overfit_min = max( 0, min( baffle_fan_spacing_side, baffle_extra_side) );
 
-// Effective thickness of baffle side after extra cut out (mm per side)
+// Effective thickness of baffle side after extra side space cut out (mm per side)
 baffle_effective_side_thickness = baffle_extra_side-baffle_overfit_min;
 
 // Minimum height of baffle side (mm)
@@ -146,7 +146,8 @@ machine_case_to_catch_top = 85.6; // As measured, width inside (81.8) + base hei
 pri_fan_is_oversize = machine_case_to_catch_top-pri_baffle_inside_to_outside < 0;
 
 // Distance from baffle bottom to machine (mm)
-machine_catch_to_baffle_bottom = pri_fan_is_oversize ? 1 : machine_case_to_catch_top-pri_baffle_inside_to_outside;
+//machine_catch_to_baffle_bottom = pri_fan_is_oversize ? 1 : machine_case_to_catch_top-pri_baffle_inside_to_outside;
+machine_catch_to_baffle_bottom = 1.2;
 
 // Distance from baffle front to bottom catch center (mm)
 machine_catch_to_baffle_rear = -bottom_catch_get_tang_width()/2;
@@ -167,7 +168,6 @@ machine_tabs_to_catch_middle = 6.3;
 machine_top_tabs_center = [ machine_tabs_to_catch_middle, machine_tabs_to_catch_top, machine_tabs_to_baffle_rear - machine_catch_to_baffle_rear ];
 
 // Distance of middle top DIMM slot to mid-catch slots (mm)
-//machine_middle_dimm_to_catch_middle = 125;
 machine_middle_dimm_to_catch_middle = 127;
 
 // Used to reposition primary fans larger than 80x80
@@ -192,6 +192,9 @@ machine_second_fan_bottom_front = [ machine_middle_dimm_to_catch_middle + sec_fa
 // Primary fan expansion
 pri_fan_baffle_expansion = [ 0, pri_fan_is_oversize ? 0 : machine_tabs_to_baffle_rear ];
 
+// Primary fan total height
+pri_fan_baffle_total_height = pri_baffle_total_size.z + pri_fan_baffle_expansion.y;
+
 // Primary fan center model position (always centered at axis)
 function pri_fan_get_model_pos() = [ 0, 0 ];
 
@@ -200,6 +203,18 @@ sec_fan_baffle_expansion = [ 0, 0 ];
 
 // Secondary fan center model position
 function sec_fan_get_model_pos() = [ machine_to_model( machine_second_fan_bottom_front ).x, machine_to_model( machine_second_fan_bottom_front ).y ];
+
+// baffle_to_top_inside_slant_angle, baffle_to_top_outside_slant_angle:
+//
+// Slant the top of the fan baffle back to match the top catch position
+//
+
+// Distance we need to make up to make top catch meet the machinve
+pri_fan_slant_makeup_distance = pri_fan_is_oversize ? 0 : machine_case_to_catch_top - pri_baffle_inside_to_outside - machine_catch_to_baffle_bottom;
+
+function baffle_to_top_inside_slant_angle()  = atan2( pri_fan_slant_makeup_distance, pri_fan_baffle_total_height - baffle_thickness + baffle_fan_spacing_radius );
+function baffle_to_top_outside_slant_angle() = atan2( pri_fan_slant_makeup_distance, pri_fan_baffle_total_height );
+function baffle_is_slanted() = baffle_to_top_inside_slant_angle() != 0;
 
 // show_fan_model: show fan model(s) in position on mount or alone
 module show_fan_model(transparency=0.25) {
@@ -263,27 +278,6 @@ module foreach_side_mirrored( mask ) {
 	children();
 } // end foreach_side_mirrored
 
-// bottom_catch_attach:
-//
-// Attach the bottom catch to square part of the baffle.
-//
-module bottom_catch_attach() {
-  // Create the catch at the bottom
-  translate( machine_to_model( machine_bottom_catch_center ) + [0,SMIDGE,0] )
-    rotate( [ 90, 180, 0 ] )
-      bottom_catch_fitting( height=machine_catch_to_baffle_bottom, base_style="sloped-half", tang_style="tilt" );
-} // end bottom_catch_attach
-
-// top_catch_attach:
-//
-// Attach the top catch to square part of the baffle.
-//
-module top_catch_attach() {
-  // Create the catch at top
-  translate( machine_to_model( machine_top_tabs_center ) - [0,0,SMIDGE] )
-    top_catch_fitting( height=0, thickness=baffle_effective_side_thickness, base_style="none", tang_style="hook", box_style="hook" );
-} // end top_catch_attach
-
 // baffle:
 //
 // Creates the squarish baffle with all its attachments. Expansion
@@ -343,13 +337,16 @@ module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
   // Slightly-oversized hole for fan.
   //
   module fan_body_deletion( fan_spec ) {
+    // Add a little if slanted base - this effectively slopes the bottom all the top tabs
+    extra_height = baffle_is_slanted() ? +20 : 0;
+
     // Add a little space around the fan
     overfit_area = fan_get_attribute( fan_spec, "area" ) + 2 * [ baffle_overfit_min, baffle_overfit_min ];
-    overfit_size = concat( overfit_area, baffle_maximal_size.z - baffle_thickness + baffle_fan_spacing_radius );
+    overfit_size = concat( overfit_area, baffle_maximal_size.z - baffle_thickness + baffle_fan_spacing_radius + extra_height );
 
     // Carve out volume
     translate( [ 0, 0, +baffle_thickness - SMIDGE ] )
-      rounded_all_cube_upper( overfit_size + [0,0,2*SMIDGE], baffle_fan_spacing_radius );
+      slanted_rounded_all_cube( overfit_size + [0,0,2*SMIDGE], baffle_fan_spacing_radius, y_angle=[baffle_to_top_inside_slant_angle(),0] );
   } // end fan_body_deletion
 
   // side_cutout_deletion:
@@ -367,7 +364,7 @@ module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
 	foreach_side_rotated( [1,3] )
 	  translate( [0,baffle_side_cutout_size.y/2,baffle_maximal_size.z+h] + [ SMIDGE, SMIDGE, SMIDGE ] )
 	    rotate( [180,0,0] )
-	      mitered_cube( baffle_side_cutout_size + [2*SMIDGE,2*SMIDGE,h+SMIDGE], x_angle=baffle_side_cutout_slant, inside=false );
+	      slanted_cube( baffle_side_cutout_size + [2*SMIDGE,2*SMIDGE,h+SMIDGE], x_angle=90-baffle_side_cutout_slant, invert=true );
     }
   } // end side_cutout_deletion
 
@@ -393,7 +390,7 @@ module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
     union() {
       difference() {
 	// Baffle frame
-	rounded_side_cube_upper( baffle_maximal_size, baffle_radius );
+	slanted_rounded_side_cube( baffle_maximal_size, baffle_radius, y_angle=[baffle_to_top_outside_slant_angle(), 0] );
 
         // Delete non-expanded top and/or bottom (assumes half volume is sufficient)
 	for( i = [0:1] ) {
@@ -433,6 +430,30 @@ module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
     air_hole_deletion( fan_spec );
   }
 } // end baffle
+
+// bottom_catch_attach:
+//
+// Attach the bottom catch to square part of the baffle.
+//
+module bottom_catch_attach() {
+  // Create the catch at the bottom
+  translate( machine_to_model( machine_bottom_catch_center ) + [0,SMIDGE,0] )
+    rotate( [ 90, 180, 0 ] )
+      bottom_catch_fitting( height=machine_catch_to_baffle_bottom, base_style="sloped-half", tang_style="tilt" );
+} // end bottom_catch_attach
+
+// top_catch_attach:
+//
+// Attach the top catch to square part of the baffle.
+//
+module top_catch_attach() {
+  // Force flush due to a small slope difference
+  delta_w = baffle_is_slanted() ? +0.02 : 0;
+
+  // Create the catch at top
+  translate( machine_to_model( machine_top_tabs_center ) - [0,delta_w,SMIDGE] )
+    top_catch_fitting( height=0, thickness=baffle_effective_side_thickness+delta_w, base_style="none", tang_style="hook", box_style="hook" );
+} // end top_catch_attach
 
 // single_mount:
 //
@@ -479,7 +500,7 @@ module single_mount() {
       for( pos = top_catch_get_slot_centers() ) {
 	translate( machine_to_model( machine_top_tabs_center ) + [ pos.x, baffle_effective_side_thickness+SMIDGE, -pri_thumbnail_offset ] )
 	  rotate( [90,180,0 ] )
-	    linear_extrude( height=baffle_effective_side_thickness+2*SMIDGE )
+	    linear_extrude( height=2*baffle_effective_side_thickness+2*SMIDGE )
 	      thumbnail( pri_thumbnail_width, pri_thumbnail_height );
     }
   }
@@ -513,20 +534,21 @@ module dual_mount() {
     sec_fan_model_width = model_width( pri_fan_pos, pri_fan_size, sec_fan_ideal_pos, sec_fan_size );
     sec_fan_pos         = sec_fan_ideal_pos - [ ((model_width_limit > 0) && (sec_fan_model_width > model_width_limit)) ? sec_fan_model_width - model_width_limit : 0, 0 ];
     if( sec_fan_pos != sec_fan_ideal_pos )
-      echo( "Secondary fan limited by = ", sec_fan_model_width-model_width_limit );
+      echo( "Secondary fan shifted by ", sec_fan_model_width-model_width_limit, " (due to model size limits)" );
     echo( "Total Width = ", model_width( pri_fan_pos, pri_fan_size, sec_fan_pos, sec_fan_size ) );
 
     // Fan
-    translate( sec_fan_pos - [ SMIDGE, 0, 0 ] ) baffle( sec_fan_spec, sec_fan_baffle_expansion );
+    translate( sec_fan_pos - [ 2*SMIDGE, 0, 0 ] ) baffle( sec_fan_spec, sec_fan_baffle_expansion );
 
     // Bridge links
     sec_bridge_span   = ( sec_fan_pos.x - pri_fan_pos.x ) - ( sec_fan_size.x + pri_fan_size.x ) / 2;
     sec_bridge_radius = max( 0, min( sec_bridge_width / 2, sec_bridge_span / 3 ) );
     for( y = sec_bridge_pos ) {
-      bridge_cubes( pri_fan_size, pri_fan_pos + [0,y],
-		    sec_fan_size, sec_fan_pos + [0,y],
-		    width  = sec_bridge_width,
-		    radius = sec_bridge_radius );
+      translate( [ -SMIDGE, 0, 0 ] )
+	bridge_cubes( pri_fan_size, pri_fan_pos + [0,y],
+		      sec_fan_size, sec_fan_pos + [0,y],
+		      width  = sec_bridge_width,
+		      radius = sec_bridge_radius );
     }
   }
 } // end dual_mount
@@ -535,16 +557,14 @@ $fn = 64;
 if( show_selection == "fan" )
   show_fan_model();
 else { // shows mount
-intersection() {
+//intersection() {
   if( model != "single" )
     dual_mount();
   else
     single_mount();
-//translate( machine_to_model( machine_bottom_catch_center ) ) cube( [ 110, 15, 16 ], center=true );
-//translate( machine_to_model( machine_top_tabs_center ) ) cube( [ 110, 15, 16 ], center=true );
 //translate( [ 0, 0, 36 ] ) cube( [ 120, 120, 24 ], center=true );
 //cube( [ 500, 500, 2*6 ], center=true );
-}
+//}
 
   if( show_selection == "mount/fan" )
     show_fan_model();
