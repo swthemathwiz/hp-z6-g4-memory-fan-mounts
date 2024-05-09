@@ -104,7 +104,8 @@ memory fan.
 This is recommended. If you have a choice, go with a flat metal
 one. Guards with a bulge fit but add a few mm's to the mount
 and, as a result, the mount is much harder to install. Silver wire
-matched my CPU fan.
+matched my CPU fan. Alternatively, you can print a suitable guard from
+your favorite 3D-model site.
 
 #### Four Case Fan Screws <a name="screws" />
 
