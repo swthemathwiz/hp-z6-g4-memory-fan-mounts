@@ -28,11 +28,11 @@ include <rounded.scad>;
 //
 // Convert number to vector.
 //
-function __slanted_v3( c ) = is_num(c) ? [ c, c, c ] : c; 
-function __slanted_v2( c ) = is_num(c) ? [ c, c ] : c; 
+function __slanted_v3( c ) = is_num(c) ? [ c, c, c ] : c;
+function __slanted_v2( c ) = is_num(c) ? [ c, c ] : c;
 
-function __slanted_v2_add( l, r ) = [ l.x + r.x, l.y + r.y ]; 
-function __slanted_v2_sub( l, r ) = [ l.x - r.x, l.y - r.y ]; 
+function __slanted_v2_add( l, r ) = [ l.x + r.x, l.y + r.y ];
+function __slanted_v2_sub( l, r ) = [ l.x - r.x, l.y - r.y ];
 
 // slanted_scaling:
 //
@@ -46,7 +46,7 @@ function slanted_scaling_xy( size, x_angle, y_angle ) = [ slanted_scaling_x( siz
 //
 // Returns scaled box for one set of angles.
 //
-function __slanted_scaled_box_v3( size, x_angle, y_angle ) = [ 
+function __slanted_scaled_box_v3( size, x_angle, y_angle ) = [
   size.x * slanted_scaling_x( size, x_angle ).x,
   size.y * slanted_scaling_y( size, y_angle ).y,
   size.z ];
@@ -54,7 +54,7 @@ function slanted_scaled_box( size, x_angle, y_angle ) = __slanted_scaled_box_v3(
 
 // slanted_bounding_box:
 //
-// Returns maximal bounding box of size and scaled 
+// Returns maximal bounding box of size and scaled
 //
 function __slanted_bounding_max_v3( size, x_angle, y_angle ) = [
   max( size.x, slanted_scaled_box( size, x_angle, 0 ).x ),
@@ -73,7 +73,7 @@ function __slanted_bounding_quadrants_v( size, x_angle, y_angle ) = [
   ];
 function __slanted_bounding_box_q( q )    = concat( __slanted_v2_add( q[0], q[1] ) / 2, q[2] );
 function __slanted_bounding_box_center_q( q ) = concat( __slanted_v2_sub( q[0], q[1] ) / 4, q[2]/2 );
-    
+
 function slanted_bounding_box( size, x_angle, y_angle ) =
   __slanted_bounding_box_q( __slanted_bounding_quadrants_v( __slanted_v3( size ), __slanted_v2( x_angle ), __slanted_v2( y_angle ) ) );
 
@@ -96,7 +96,7 @@ module slanted_extrude( size, height, x_angle=0, y_angle=0, invert=false ) {
   x_angle_vector = __slanted_v2( x_angle );
   y_angle_vector = __slanted_v2( y_angle );
 
-  // Use height if specified, otherwise size.z 
+  // Use height if specified, otherwise size.z
   effective_size = is_undef(height) ? size_vector : [ size_vector.x, size_vector.y, height ];
 
   // Check size
@@ -109,9 +109,9 @@ module slanted_extrude( size, height, x_angle=0, y_angle=0, invert=false ) {
   module inversion_of( invert ) {
     if( invert ) {
       z_half = effective_size.z/2;
-      translate( [ 0, 0, +z_half ] ) 
+      translate( [ 0, 0, +z_half ] )
         mirror( [ 0, 0, 1 ] )
-	  translate( [ 0, 0, -z_half ] ) 
+	  translate( [ 0, 0, -z_half ] )
             children();
     }
     else
@@ -192,8 +192,8 @@ module slanted_rounded_top_cube( size, radius=0, x_angle=0, y_angle=0, invert=fa
   assert( is_num( y_angle ) || (is_list( y_angle ) && len( y_angle ) == 2 && is_num(y_angle[0]) && is_num(y_angle[1])) );
 
   // Get bounding box
-  bounding_box        = slanted_bounding_box( size, x_angle, y_angle ); 
-  bounding_box_center = slanted_bounding_box_center( size, x_angle, y_angle ); 
+  bounding_box        = slanted_bounding_box( size, x_angle, y_angle );
+  bounding_box_center = slanted_bounding_box_center( size, x_angle, y_angle );
 
   //#translate( +[ bounding_box_center.x, bounding_box_center.y, 0 ] ) slanted_cube( bounding_box );
 
@@ -215,8 +215,8 @@ module slanted_rounded_all_cube( size, radius=0, x_angle=0, y_angle=0, invert=fa
   assert( is_num( y_angle ) || (is_list( y_angle ) && len( y_angle ) == 2 && is_num(y_angle[0]) && is_num(y_angle[1])) );
 
   // Get bounding box
-  bounding_box        = slanted_bounding_box( size, x_angle, y_angle ); 
-  bounding_box_center = slanted_bounding_box_center( size, x_angle, y_angle ); 
+  bounding_box        = slanted_bounding_box( size, x_angle, y_angle );
+  bounding_box_center = slanted_bounding_box_center( size, x_angle, y_angle );
 
   //#translate( +[ bounding_box_center.x, bounding_box_center.y, 0 ] ) slanted_cube( bounding_box );
 
