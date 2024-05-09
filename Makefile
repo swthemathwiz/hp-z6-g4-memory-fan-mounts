@@ -23,7 +23,7 @@ SRCS = \
 	fan.scad \
 	hash.scad \
 	rounded.scad \
-	mitered.scad \
+	slanted.scad \
 	gusset.scad \
 	smidge.scad \
 

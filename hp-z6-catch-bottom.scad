@@ -9,7 +9,7 @@
 
 include <smidge.scad>;
 include <rounded.scad>;
-include <mitered.scad>;
+include <slanted.scad>;
 
 // Catch:
 //
@@ -117,22 +117,20 @@ module bottom_catch_base( style, height, width ) {
   }
   // sloped: sides are sloped at 45 degrees
   else if( style == "sloped" ) {
-    mitered_rounded_cube( size, bottom_catch_radius, x_angle=45, y_angle=45, inside=false );
+    slanted_rounded_side_cube( size, bottom_catch_radius, x_angle=45, y_angle=45, invert=true);
   }
   // sloped-half: sides are sloped with rear clipped beyond tangs
   else if( style == "sloped-half" ) {
-    front_angle = 40;
-    side_angle  = 80;
+    front_angle = 50;
+    side_angle  = 10;
 
-    expanded_size = mitered_adjusted_square( size, x_angle=side_angle, y_angle=front_angle );
+    expanded_size = slanted_bounding_box( size, x_angle=side_angle, y_angle=front_angle );
     delta         = expanded_size.y/2-(bottom_slot_size.y*bottom_tang_multiplier.y)/2;
 
     intersection() {
-      mitered_rounded_cube( size, bottom_catch_radius, x_angle=side_angle, y_angle=front_angle, inside=false );
-
+      slanted_rounded_side_cube( size, bottom_catch_radius, x_angle=side_angle, y_angle=front_angle, invert=true );
       translate( [0,delta,0] )
-        linear_extrude( height=size.z )
-          square( expanded_size, center=true );
+        slanted_cube( expanded_size );
     }
   }
   // trap-both:

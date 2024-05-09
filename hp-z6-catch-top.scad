@@ -9,7 +9,7 @@
 
 include <smidge.scad>;
 include <rounded.scad>;
-include <mitered.scad>;
+include <slanted.scad>;
 include <gusset.scad>;
 
 // Catch:
@@ -276,7 +276,7 @@ module top_catch_box(style,thickness) {
   // hook: matching box for hooks
   else if( style == "hook" ) {
     translate( [0,thickness/2,0] )
-      mitered_cube( [ size.x, thickness, size.z ], x_angle=60 );
+      slanted_cube( [ size.x, thickness, size.z ], x_angle=-30 );
   }
   else {
     assert( false, "top_catch_box: style unknown!" );
