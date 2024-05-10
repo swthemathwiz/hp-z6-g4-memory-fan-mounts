@@ -415,7 +415,8 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
         }
 
         // Retainer cut outs in corners
-	sec_retainer_deletion( fan_spec, baffle_sec_retainer_width, baffle_sec_retainer_offset );
+        translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
+	  sec_retainer_deletion( fan_spec, baffle_sec_retainer_width, baffle_sec_retainer_offset );
       }
 
       // Attach any children, prior to deletions of space for the fan components
@@ -462,24 +463,32 @@ module top_catch_attach() {
 // A single mount - baffle with all its attachments
 //
 module single_mount() {
+
   // top_catch_platform: build a simple platform for the top catch (for oversize fans)
   module top_catch_platform() {
-    platform_h = baffle_thickness + baffle_extra_height + machine_tabs_to_baffle_rear;
+    platform_h = machine_tabs_to_baffle_rear;
     platform_w = baffle_get_area( pri_fan_spec ).x;
     platform_t = baffle_effective_side_thickness;
 
     translate( machine_to_model( [machine_model_middle.x, machine_top_tabs_center.y + platform_t/2, machine_top_tabs_center.z] ) ) {
       // Platform itself
-      translate( [ 0,0, -platform_h/2 ] )
-	rotate( [ 90, 0, 0 ] )
-	  rounded_side_cube( [ platform_w, platform_h, platform_t ], center=true, radius=baffle_radius );
+      {
+	platform_h_full = baffle_thickness + baffle_extra_height + platform_h;
+	translate( [ 0, 0, -platform_h_full/2 ] )
+	  rotate( [ 90, 0, 0 ] )
+	    difference() {
+	      rounded_side_cube( [ platform_w, platform_h_full, platform_t ], center=true, radius=baffle_radius );
+	      translate( [ 0, -platform_h/2 - SMIDGE, 0 ] )
+		cube( [ platform_w, platform_h_full - platform_h, platform_t ] + [ 2*SMIDGE, 0, 2*SMIDGE ], center=true );
+	    }
+      }
 
       // Platform side gussets
       foreach_side_mirrored( [1,3] )
         foreach_side_mirrored( [2,3] )
-          translate( [ +platform_w/2, platform_t/2-SMIDGE, -machine_tabs_to_baffle_rear-SMIDGE ] ) 
+          translate( [ +platform_w/2, platform_t/2-SMIDGE, -platform_h-SMIDGE ] )
 	    rotate( [ 0, -90, 0 ] )
-	      round_gusset_3d( machine_tabs_to_baffle_rear/2, baffle_effective_side_thickness, quadrant=1 );
+	      round_gusset_3d( platform_h/2, baffle_effective_side_thickness, quadrant=1 );
     }
   } // end top_catch_platform
 
