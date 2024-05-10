@@ -98,7 +98,7 @@ module top_tang_simple( tip_profile, tang_profile, notch_profile ) {
       polygon([ [0,0], [0,nh], [ni,nh], [ni,y+h], [p,y+h], [l,+h/2], [l,0] ]);
     }
   }
-} // end tang_simple
+} // end top_tang_simple
 
 // top_tang_elliptical: ellipsoid tang
 module top_tang_elliptical( tip_profile, tang_profile, notch_profile ) {
@@ -141,8 +141,8 @@ module top_tang_elliptical( tip_profile, tang_profile, notch_profile ) {
       linear_extrude( height=w, center=true, convexity=20 )
 	polygon([ [0,0], [0,nh], [ni,nh], [ni,p], [o,h], [d,h], [d,0] ]);
     }
-  }
-} // end tang_elliptical
+  } // end ellipsoid
+} // end top_tang_elliptical
 
 // top_catch_tang: the two top tangs
 module top_catch_tang(style, thickness) {
