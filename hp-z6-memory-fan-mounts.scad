@@ -87,7 +87,7 @@ baffle_air_hole_slant = 80; // [70:5:90]
 baffle_fan_spacing_side = 0.2; // [0.0:0.1:1]
 
 // Decorative radius in space between fan and baffle (mm)
-baffle_fan_spacing_radius = 0.5; // [0:0.1:2]
+baffle_fan_spacing_radius = 0.2; // [0:0.1:2]
 
 // Side cutout height (mm)
 baffle_side_cutout_height = 14; // [0:0.5:20]
@@ -284,10 +284,10 @@ module foreach_side_mirrored( mask ) {
 //
 // Creates the squarish baffle with all its attachments. Expansion
 // is an array of side height to add (or subtract) from [ <bottom>, <top> ]
-// halves. <top_loader> indicates that the fan is loaded from the top
+// halves. <is_top_loader> indicates that the fan is loaded from the top
 // instead of being inserted from the rear.
 //
-module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
+module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
   assert( is_list(expansion) && len(expansion) == 2 );
 
   // Maximal volume of baffle (with expansion and not including children)
@@ -409,7 +409,7 @@ module baffle( fan_spec, expansion=[0,0], top_loader=false ) {
         side_cutout_deletion( fan_spec );
 
         // Entirely delete the top baffle wall for a top loader
-        if( top_loader ) {
+        if( is_top_loader ) {
           translate( [ -baffle_maximal_size.x/2, baffle_maximal_size.y/2 - baffle_extra_side, 0 ] - [SMIDGE, SMIDGE, SMIDGE] )
 	    cube( [ baffle_maximal_size.x, baffle_extra_side, baffle_maximal_size.z ] + [ 2*SMIDGE, 2*SMIDGE, 2*SMIDGE ] );
         }
@@ -462,16 +462,6 @@ module top_catch_attach() {
 // A single mount - baffle with all its attachments
 //
 module single_mount() {
-  // thumbnail: a half-moon type shape
-  module thumbnail( w, h ) {
-    r = w*w / (8*h) + h/2;
-    o = r-h + h/2;
-    intersection() {
-      translate( [0,-o] ) circle( r=r );
-      square( [ w, h ], center=true );
-    }
-  } // end thumbnail
-
   // top_catch_platform: build a simple platform for the top catch (for oversize fans)
   module top_catch_platform() {
     platform_h = baffle_thickness + baffle_extra_height + machine_tabs_to_baffle_rear;
@@ -493,6 +483,25 @@ module single_mount() {
     }
   } // end top_catch_platform
 
+  module top_thumbnails() {
+    // thumbnail: a half-moon type shape
+    module thumbnail( w, h ) {
+      r = w*w / (8*h) + h/2;
+      o = r-h + h/2;
+      intersection() {
+	translate( [0,-o] ) circle( r=r );
+	square( [ w, h ], center=true );
+      }
+    } // end thumbnail
+
+    // Put a thumbnail behind each top catch slot
+    for( pos = top_catch_get_slot_centers() )
+      translate( machine_to_model( machine_top_tabs_center ) + [ pos.x, baffle_effective_side_thickness+SMIDGE, -pri_thumbnail_offset ] )
+	rotate( [ 90, 180, 0 ] )
+	  linear_extrude( height=2*baffle_effective_side_thickness+2*SMIDGE )
+	    thumbnail( pri_thumbnail_width, pri_thumbnail_height );
+  } // end top_thumbnails
+
   // Fan
   difference() {
     // Baffle with catches attached
@@ -511,12 +520,7 @@ module single_mount() {
 
     // Small thumbnail deletions for flex and also to allow security leash
     if( !pri_fan_is_oversize )
-      for( pos = top_catch_get_slot_centers() ) {
-	translate( machine_to_model( machine_top_tabs_center ) + [ pos.x, baffle_effective_side_thickness+SMIDGE, -pri_thumbnail_offset ] )
-	  rotate( [90,180,0 ] )
-	    linear_extrude( height=2*baffle_effective_side_thickness+2*SMIDGE )
-	      thumbnail( pri_thumbnail_width, pri_thumbnail_height );
-    }
+      top_thumbnails();
   }
 } // end single_mount
 
