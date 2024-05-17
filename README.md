@@ -151,6 +151,8 @@ without the lock.
 I purchased a pre-crimped Molex Micro-Fit 3.0 pig-tail cable and crimped
 a 4-Pin fan housing on to the other end using parts from Aliexpress:
 
+<img src="../media/media/cable-parts.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable Parts" align="right" height="200px" />
+
 - [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html):
   Pre-crimped with 20 cm of wiring (a couple inches more would have been better). Note that
   a couple of the terminals were not fully seated and needed to be pushed in.
@@ -159,11 +161,9 @@ a 4-Pin fan housing on to the other end using parts from Aliexpress:
   accepts the HP-style fan connectors. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
   and is sometimes referred incorrectly as Molex 2540.
 
-<p align="center"><img src="../media/media/cable-parts.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable Parts" height="200px" /></p>
-
 Cut off the lock on the Molex connector, observe the orientation of the connector
 when plugged in to the motherboard, and map the pin numbering to the above
-pinout (for me, Motherboard {1,2,3,4} -> Wire {Black, Red, White, Yellow} <-> Fan
+pinout (for me, Motherboard {1,2,3,4} → Wire {Black, Red, White, Yellow} → Fan
 {Ground, +12 VDC, RPM Sense, PWM Control}) based on the header [pinout](#pinout).
 Crimp on the fan connectors, insert the pins into the fan housing
 in the correct positions ([Reference Pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
@@ -178,9 +178,9 @@ PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-0
 
 For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
 a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
-plentiful on ebay.
+plentiful on ebay. Other choices are listed above.
 
-You can also go with a 92-mm fan. Here are some HP-compatible fans I've
+For a 92-mm secondary fan, here are some HP-compatible fans I've
 seen on ebay:
 
 - Foxconn PV902512PSPF (0.40A) from HP/Compaq DCxx00 (HP: 435452-001, 432768-001, 451144-001)
@@ -188,6 +188,9 @@ seen on ebay:
 - Delta QUR0912VH (0.60A) from the Z4x0 series (HP: 647113-001 Rev. A)
 - Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
 - Delta AUB0912HH (0.40A) (HP: 411456-001)
+
+In any case, choose a fan with a cable long enough to
+reach your home-built fan adapter cable (about 6 inches in my case).
 
 See above for recommendations on the [fan guard](#guard) and [case fan screws](#screws).
 
@@ -256,12 +259,14 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
     ```shell
     % sudo modprobe hp-wmi-sensors
     % sensors
+    ...
     hp_wmi_sensors-virtual-0
     Adapter: Virtual device
     CPU0 Fan:                    884 RPM
     Rear Chassis Fan0:           651 RPM
     Front Chassis Fan0:          526 RPM
     Memory Fan1:                 770 RPM
+    ...
     ```
 
 ## Source
