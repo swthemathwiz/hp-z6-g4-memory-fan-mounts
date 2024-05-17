@@ -82,11 +82,11 @@ so to some extent the same directions apply.
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
 Generally, you'll want to buy (or scavenge) an HP-compatible 80 mm x 25 mm PWM
-+12VDC fan that has an HP-specific 4-pin connector and a cable length of about
++12 VDC fan that has an HP-specific 4-pin connector and a cable length of about
 3 inches or more.
 
 The stock memory fan is a Foxconn PVA080G12Q (0.65A max, 0.35A nominal)
-(HP: 907246-001) +12VDC PWM fan. Note that this fan is very common on ebay with
+(HP: 907246-001) +12 VDC PWM fan. Note that this fan is very common on ebay with
 PC-style connector, so make sure you know what you're getting into. I can't find
 a lot of 80-mm fans with the HP-style connector, so you might be stuck with ordering
 a stock Z6 memory fan. Some other 80-mm fans I saw an HP-style connector:
@@ -131,13 +131,15 @@ The connector on the motherboard for the second memory fan is intended
 to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001).
 Mechanically it is, of course, nonstandard.
 
+<a name="pinout"/>
+
 The motherboard's 4-pin (2x2) box header is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
 and is actually a Blind-Mate Interface (BMI) part [Molex 44432-0401](https://www.molex.com/en-us/products/part-detail/444320401),
 which makes the part on the shroud [Molex 44133-0400](https://www.molex.com/en-us/products/part-detail/441330400).
 The location and pin-out are as follows (all pictures oriented in the same
 direction - left = case rear, up = case top):
 
-<p align="center"><a name="pinout"><img src="../media/media/pinout.jpg" alt="Z6 Shroud MEMFAN Pinout" height="350px" /></a></p>
+<p align="center"><img src="../media/media/pinout.jpg" alt="Z6 Shroud MEMFAN Pinout" height="350px" /></p>
 
 We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400)
 to the header and bring the signals out to a "standard" fan connector by building a
@@ -171,8 +173,8 @@ and you get something like this:
 
 #### A Second 80- or 92-mm Fan, Another Fan Guard, and Four More Case Fan Screws
 
-For reference, the OEM shroud contains a single blower-style fan. The OEM fan is a Foxconn
-PVB090G12L-P01-AB +12VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
+For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
+PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
 
 For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
 a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
