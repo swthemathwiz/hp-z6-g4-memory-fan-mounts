@@ -61,8 +61,8 @@ Newer fans come with black wires and a white connector (e.g. [Molex 22-01-3047](
 These connectors are polarized - both ends of the connector have small ribs. They differ from
 4-pin PC-style PWM fans which have a 3+1 keying (see [Molex 47054-1000](https://www.molex.com/en-us/products/part-detail/470541000)).
 
-Electrically, both PC- and HP-style are compatible and the signals are compatible
-and in the same order: Ground, +12VDC, RPM sense, PWM control.
+Electrically, PC- and HP-style signals are compatible
+and are in the same order: Ground, +12 VDC, RPM Sense, PWM Control.
 
 If you want to connect a PC-style PWM fan to an HP-style motherboard header, you
 need to modify the connector. You can do this either by shaving the middle key
@@ -131,27 +131,43 @@ The connector on the motherboard for the second memory fan is intended
 to attach to the HP Z6 G4 Memory Shroud (HP: 2HW44AA, 916799-001).
 Mechanically it is, of course, nonstandard.
 
-The motherboard's 4-pin (2x2) connector is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
+The motherboard's 4-pin (2x2) box header is from the [Molex Micro Fit 3.0](https://www.molex.com/en-us/products/connectors/wire-to-board-connectors/micro-fit-connectors) family
 and is actually a Blind-Mate Interface (BMI) part [Molex 44432-0401](https://www.molex.com/en-us/products/part-detail/444320401),
 which makes the part on the shroud [Molex 44133-0400](https://www.molex.com/en-us/products/part-detail/441330400).
-The location and pin-out are as follows:
+The location and pin-out are as follows (all pictures oriented in the same
+direction - left = case rear, up = case top):
 
-**Pin-out to be finalized.**
+<p align="center"><a name="pinout"><img src="../media/media/pinout.jpg" alt="Z6 Shroud MEMFAN Pinout" height="350px" /></a></p>
 
-<p align="center"><img src="../media/media/pinout.jpg" alt="MEMFAN Pinout" height="350px" /></p>
+We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400)
+to the header and bring the signals out to a "standard" fan connector by building a
+cable. Because the header is a BMI part, it is not designed for locking so you'll need to
+remove the connector's lock to insert it. The connector is polarized
+correctly to the mating part; it fits in only one orientation. It seems reasonably secure
+without the lock.
 
-We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400) connector
-and bring the signals out to a "standard" fan connector by building a
-cable. There are many ways to construct the cable to connect a fan to that
-header. What I did was use a pre-crimped Molex cable (crimping Molex
-Micro-Fit is hard) and crimped on a 4-Pin Fan Header (easier to crimp). I ordered
-parts from Aliexpress:
+I purchased a pre-crimped Molex Micro-Fit 3.0 pig-tail cable and crimped
+a 4-Pin fan housing on to the other end using parts from Aliexpress:
 
 - [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html):
-  Pre-crimped wiring.
+  Pre-crimped with 20 cm of wiring (a couple inches more would have been better). Note that
+  a couple of the terminals were not fully seated and needed to be pushed in.
 - [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.us/item/2255799913539129.html):
-  Shrouded PC-style fan housing and crimp pins. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
+  Shrouded PC-style fan housing and crimp pins. It also
+  accepts the HP-style fan connectors. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
   and is sometimes referred incorrectly as Molex 2540.
+
+<p align="center"><img src="../media/media/cable-parts.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable Parts" height="200px" /></p>
+
+Cut off the lock on the Molex connector, observe the orientation of the connector
+when plugged in to the motherboard, and map the pin numbering to the above
+pinout (for me, Motherboard {1,2,3,4} -> Wire {Black, Red, White, Yellow} <-> Fan
+{Ground, +12 VDC, RPM Sense, PWM Control}) based on the header [pinout](#pinout).
+Crimp on the fan connectors, insert the pins into the fan housing
+in the correct positions ([Reference Pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
+and you get something like this:
+
+<p align="center"><img src="../media/media/cable.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable" height="200px" /></p>
 
 #### A Second 80- or 92-mm Fan, Another Fan Guard, and Four More Case Fan Screws
 
@@ -232,11 +248,25 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
     Speed(%) → 90 to create a small hurricane.
 
+    Or, on Linux kernel > 6.5, verify "Memory Fan1" RPM presence with lm-sensors and
+    the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver):
+
+    ```shell
+    % sudo modprobe hp-wmi-sensors
+    % sensors
+    hp_wmi_sensors-virtual-0
+    Adapter: Virtual device
+    CPU0 Fan:                    884 RPM
+    Rear Chassis Fan0:           651 RPM
+    Front Chassis Fan0:          526 RPM
+    Memory Fan1:                 770 RPM
+    ```
+
 ## Source
 
-The fan mount is built using OpenSCAD. *hp-z6-memory-fan-mount-single-80.scad* is the main
+The fan mounts are built using OpenSCAD. *hp-z6-memory-fan-mount-single-80.scad* is the main
 file for the single fan model. *hp-z6-memory-fan-mount-dual-80-80.scad* and
-*hp-z6-memory-fan-mount-dual-80-92.scad* builds the dual fan model with
+*hp-z6-memory-fan-mount-dual-80-92.scad* build dual fan models with
 secondary fan sizes of 80 mm or 92 mm respectively. Most of the code
 and settings are found in *hp-z6-memory-fan-mounts.scad*.
 
