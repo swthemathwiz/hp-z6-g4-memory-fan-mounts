@@ -251,9 +251,9 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
 7.  Plug in the fan(s), reattach any hardware, power on and enjoy the cool breeze
     of the memory fans in your HP Z6\! If you want to test higher fan speeds,
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
-    Speed(%) → 90 to create a small hurricane.
+    Speed(%) → 100 to create a small hurricane.
 
-    Or, on Linux kernel > 6.5, verify "Memory Fan1" RPM presence with lm-sensors and
+    Or, on Linux kernel > 6.5, verify "Memory Fan0" RPM presence with lm-sensors and
     the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver):
 
     ```shell
@@ -262,10 +262,11 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
     ...
     hp_wmi_sensors-virtual-0
     Adapter: Virtual device
-    CPU0 Fan:                    884 RPM
-    Rear Chassis Fan0:           651 RPM
-    Front Chassis Fan0:          526 RPM
-    Memory Fan1:                 770 RPM
+    CPU0 Fan:                   4580 RPM
+    Rear Chassis Fan0:          2945 RPM
+    Front Chassis Fan0:         2426 RPM
+    Memory Fan0:                2614 RPM
+    Memory Fan1:                4501 RPM
     ...
     ```
 
