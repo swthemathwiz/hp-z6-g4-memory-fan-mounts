@@ -77,7 +77,7 @@ reuse the existing fan and just add the guard and case fan screws.
 Note that the dual mount replaces the existing single memory fan mount,
 so to some extent the same directions apply.
 
-#### An HP-Compatible 80-mm Fan
+#### An HP-Compatible 80-mm Fan  <a name="fan80" />
 
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
@@ -117,10 +117,10 @@ coarse thread. Skip the plastic push-pins/rivets and rubber connectors.
 ### ...for the Dual Mount
 
 The dual mount adds an additional fan that hangs off the primary
-mount. There's an adapter cable, which you have to build, and a second fan
+mount. There's a fan adapter cable, which you have to build, and a second fan
 to install in the mount.
 
-#### Adapter Cable <a name="cable" />
+#### Fan Adapter Cable <a name="cable" />
 
 This information was taken or derived partially from:
 [u/chestertonfan](https://www.reddit.com/r/HSpecWorkstations/comments/1aovkmw/hp_z6_g4_ram_upgrade_and_how_to_prevent_memory/),
@@ -153,10 +153,10 @@ a 4-Pin fan housing on to the other end using parts from Aliexpress:
 
 <img src="../media/media/cable-parts.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable Parts" align="right" height="200px" />
 
-- [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.us/item/3256801843724035.html):
+- [2x2P - Molex 3.0MM Micro-Fit Male](https://www.aliexpress.com/item/3256801843724035.html):
   Pre-crimped with 20 cm of wiring (a couple inches more would have been better). Note that
   a couple of the terminals were not fully seated and needed to be pushed in.
-- [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.us/item/2255799913539129.html):
+- [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.com/item/2255799913539129.html):
   Shrouded PC-style fan housing and crimp pins. It also
   accepts the HP-style fan connectors. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
   and is sometimes referred incorrectly as Molex 2540.
@@ -166,7 +166,7 @@ when plugged in to the motherboard, and map the pin numbering to the above
 pinout (for me, Motherboard {1,2,3,4} → Wire {Black, Red, White, Yellow} → Fan
 {Ground, +12 VDC, RPM Sense, PWM Control}) based on the header [pinout](#pinout).
 Crimp on the fan connectors, insert the pins into the fan housing
-in the correct positions ([Reference Pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
+in the correct positions ([PWM fan reference pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
 and you get something like this:
 
 <p align="center"><img src="../media/media/cable.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable" height="200px" /></p>
@@ -178,7 +178,7 @@ PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-0
 
 For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
 a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
-plentiful on ebay. Other choices are listed above.
+plentiful on ebay. Other choices are listed [above](#fan80).
 
 For a 92-mm secondary fan, here are some HP-compatible fans I've
 seen on ebay:
@@ -189,8 +189,8 @@ seen on ebay:
 - Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
 - Delta AUB0912HH (0.40A) (HP: 411456-001)
 
-In any case, choose a fan with a cable long enough to
-reach your home-built fan adapter cable (about 6 inches in my case).
+In any case, choose a secondary fan with a cable long enough to
+reach your fan adapter cable (about 6 inches for the above setup).
 
 See above for recommendations on the [fan guard](#guard) and [case fan screws](#screws).
 
