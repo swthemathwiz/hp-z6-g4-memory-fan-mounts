@@ -41,7 +41,8 @@ middle part of an HP Z6 G4 workstation.
 Replaces the single front memory fan with a dual 80-mm fan setup. Installed in the
 area between the drive area and motherboard on an HP Z6 G4 workstation. The
 secondary fan hangs off the primary memory fan and is centered
-on the set of DIMMs between the CPU and PSU.
+on the set of DIMMs between the CPU and PSU. Note that this is a wide model - a little
+less than 210 mm.
 
 </td></tr></tbody></table></div>
 
@@ -49,7 +50,8 @@ on the set of DIMMs between the CPU and PSU.
 
 ### HP Z6 G4 Dual 80/92 Memory Fan Mount
 
-Like the dual 80/80 mount but with a 92 mm secondary fan.
+Like the dual 80/80 memory fan mount but with a larger 92-mm secondary fan. Note
+that this is a wide model - about 210 mm.
 
 </td></tr></tbody></table></div>
 
