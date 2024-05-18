@@ -253,8 +253,10 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
     Speed(%) → 100 to create a small hurricane.
 
-    Or, on Linux kernel > 6.5, verify "Memory Fan0" RPM presence with lm-sensors and
-    the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver):
+    On Linux kernel > 6.5, verify fan presence detect and RPM by using lm-sensors and
+    the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
+    "Memory Fan0" is for fan connected to the shroud header and "Memory Fan1" is
+    for the front fan:
 
     ```shell
     % sudo modprobe hp-wmi-sensors
