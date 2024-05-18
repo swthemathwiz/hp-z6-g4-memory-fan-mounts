@@ -81,15 +81,15 @@ so to some extent the same directions apply.
 
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
-Generally, you'll want to buy (or scavenge) an HP-compatible 80 mm x 25 mm PWM
-+12 VDC fan that has an HP-specific 4-pin connector and a cable length of about
-3 inches or more.
+Generally, if you don't have a stock fan, you'll want to buy (or scavenge) an
+HP-compatible 80 mm x 25 mm PWM +12 VDC fan that has an HP-specific 4-pin
+connector and a cable length of about 3 inches or more.
 
 The stock memory fan is a Foxconn PVA080G12Q (0.65A max, 0.35A nominal)
 (HP: 907246-001) +12 VDC PWM fan. Note that this fan is very common on ebay with
-PC-style connector, so make sure you know what you're getting into. I can't find
-a lot of 80-mm fans with the HP-style connector, so you might be stuck with ordering
-a stock Z6 memory fan. Some other 80-mm fans I saw an HP-style connector:
+PC-style connector, so make sure you know what you're getting into. 80-mm fans with
+the HP-style connector seem somewhat rare, so you might be stuck ordering
+a stock fan. Some 80-mm fans I spotted with an HP-style connector:
 
 - AVC DL08025R12U (0.50A) from HP 400 G3 SFF series (both styles)
 - FOXCONN PVA080G12R (0.80A) (various styles)
