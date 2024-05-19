@@ -117,18 +117,17 @@ function fan_get_screw_positions(spec) = let ( screw_hole_side = fan_get_attribu
 module fan_demo( _i = 0, _pos = 0 ) {
   if( _i < len(fan_specifications) ) {
     spec  = fan_get_spec( fan_specifications[_i][0] );
-    side  = fan_get_attribute( spec, "side" );
-    width = fan_get_attribute( spec, "width" );
+    vol   = fan_get_attribute( spec, "volume" );
 
     demo_spacing = 30;
 
-    translate( [ side/2, _pos, side/2 ] )
+    translate( [ vol.x/2, _pos, vol.y/2 ] )
       rotate( [ 90, 0, 0 ] ) {
-        //translate( [ -side/2, -side/2, 0 ] ) color( "yellow", 0.1 ) cube( [side, side,width] );
+        //color( "yellow", 0.1 ) translate( [ -vol.x/2, -vol.y/2, 0 ] ) cube( vol );
 	fan_model( spec );
       }
 
-    fan_demo( _i + 1, _pos + width + demo_spacing );
+    fan_demo( _i + 1, _pos + vol.z + demo_spacing );
   }
 } // end fan_demo
 
