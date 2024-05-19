@@ -159,7 +159,7 @@ a 4-Pin fan housing on to the other end using parts from Aliexpress:
   Pre-crimped with 20 cm of wiring (a couple inches more would have been better). Note that
   a couple of the terminals were not fully seated and needed to be pushed in.
 - [Molex 2540 3+1 Pin Black Fan Male](https://www.aliexpress.com/item/2255799913539129.html):
-  Shrouded PC-style fan housing and crimp pins. It also
+  Shielded PC-style PWM fan housing and crimp pins. It also
   accepts the HP-style fan connectors. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
   and is sometimes referred incorrectly as Molex 2540.
 
@@ -212,14 +212,17 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
 
 2.  Remove the existing front memory mount and fan. Refer to the
     [HP Z6 G4 Maintenance and Service Guide](https://support.hp.com/us-en/product/setup-user-guides/hp-z6-g4-workstation/16449901),
-    page 27. Note the fan orientation (fan label forward)
+    page 27. Take note of the fan orientation (fan label forward)
     and cable routing. Once out the case, if you want to reuse
-    the OEM 80-mm fan, just unclip it from the rear of the OEM mount.
+    the OEM 80-mm fan, it unclips easily from the rear of the OEM mount.
     There is no need to remove the rear fan guard from the OEM fan.
 
-3.  Rearrange any cable flow between the 5 1/4" drive bays and the
-    motherboard to open up space. For example, push unused drive
-    and CD-ROM power cables into the drive bays.
+3.  For a dual setup, rearrange any cable flow between the 5 1/4" drive bays
+    and the motherboard to open up space. For example, push unused drive
+    and CD-ROM power cables into the drive bays. Essential, create a
+    hole in the area that fits the secondard fan.
+
+    <p align="center"><img src="../media/media/clean-out.jpg" alt="Create a Hole" height="200px" /></p>
 
     If you're building a dual setup, you should probably check your
     electrical cabling prior to assembly. Also, it's not a bad idea
@@ -257,7 +260,7 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
 
     On Linux kernel > 6.5, verify fan presence detect and RPM by using lm-sensors and
     the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
-    "Memory Fan0" is for fan connected to the shroud header and "Memory Fan1" is
+    "Memory Fan0" is for the fan connected to the shroud header and "Memory Fan1" is
     for the front fan:
 
     ```shell
