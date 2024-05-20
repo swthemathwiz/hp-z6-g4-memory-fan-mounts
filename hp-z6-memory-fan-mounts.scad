@@ -128,8 +128,8 @@ grill_add = true;
 // Layout grills of different fan sizes geometrically similar
 grill_normalize = true;
 
-// Thickness of the walls of the grill (mm)
-grill_wall_thickness = 2.2; // [1:0.1:5];
+// Width of the lines of the grill (mm)
+grill_line_width = 2.2; // [1:0.1:5];
 
 // Distance between concentric circles (mm)
 grill_step_distance = 10; // [5:1:20]
@@ -302,11 +302,11 @@ module foreach_side_mirrored( mask ) {
 //
 // Create a grill for a fan
 //
-module fan_grill( fan_spec, height, convexity=10 ) {
+module fan_grill( fan_spec, thickness, convexity=10 ) {
   fan_area = fan_get_attribute( fan_spec, "area" );
 
   // Normalize resemblance to 80-mm fan
-  step_distance = grill_normalize ? (grill_step_distance / 80 * fan_get_attribute( fan_spec, "side" )) : grill_step_distance;
+  step_distance = grill_normalize ? (grill_step_distance * max( fan_area ) / 80 ) : grill_step_distance;
 
   // Concentric circle parameters
   circle_count        = ceil( min( fan_area ) / 2 / step_distance );
@@ -317,7 +317,7 @@ module fan_grill( fan_spec, height, convexity=10 ) {
   rib_start_angle = 0;
   rib_max_length  = norm( fan_area ) / 2;
 
-  linear_extrude( height=height, convexity=convexity ) {
+  linear_extrude( height=thickness, convexity=convexity ) {
     intersection() {
       // Delete any overflow
       square( fan_area, center=true );
@@ -326,13 +326,13 @@ module fan_grill( fan_spec, height, convexity=10 ) {
         // Concentric circles
         for( i = [1:circle_count] ) {
           r = circle_start_radius + (i-1) * step_distance;
-          line_circular( r, grill_wall_thickness );
+          line_circular( r, grill_line_width );
         }
 
         // Ribs
         for( i = [1:grill_ribs] ) {
           a = rib_start_angle + (i-1)*rib_delta_angle;
-          line_ray( a, circle_start_radius, rib_max_length, grill_wall_thickness );
+          line_ray( a, circle_start_radius, rib_max_length, grill_line_width );
         }
       }
     }
