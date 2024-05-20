@@ -125,6 +125,9 @@ baffle_sec_retainer_offset = 3; // [2:.2:6]
 // Create a grill
 grill_add = true;
 
+// Layout grills of different fan sizes geometrically similar
+grill_normalize = true;
+
 // Thickness of the walls of the grill (mm)
 grill_wall_thickness = 2.2; // [1:0.1:5];
 
@@ -302,8 +305,8 @@ module foreach_side_mirrored( mask ) {
 module fan_grill( fan_spec, height, convexity=10 ) {
   fan_area = fan_get_attribute( fan_spec, "area" );
 
-  // Force resemblance to 80-mm fan
-  step_distance = grill_step_distance / 80 * fan_get_attribute( fan_spec, "side" );
+  // Normalize resemblance to 80-mm fan
+  step_distance = grill_normalize ? (grill_step_distance / 80 * fan_get_attribute( fan_spec, "side" )) : grill_step_distance;
 
   // Concentric circle parameters
   circle_count        = ceil( min( fan_area ) / 2 / step_distance );
@@ -312,6 +315,7 @@ module fan_grill( fan_spec, height, convexity=10 ) {
   // Ribs parameters
   rib_delta_angle = 360 / grill_ribs;
   rib_start_angle = 0;
+  rib_max_length  = norm( fan_area ) / 2;
 
   linear_extrude( height=height, convexity=convexity ) {
     intersection() {
@@ -328,7 +332,7 @@ module fan_grill( fan_spec, height, convexity=10 ) {
         // Ribs
         for( i = [1:grill_ribs] ) {
           a = rib_start_angle + (i-1)*rib_delta_angle;
-          line_ray( a, circle_start_radius, norm( fan_area ) / 2, grill_wall_thickness );
+          line_ray( a, circle_start_radius, rib_max_length, grill_wall_thickness );
         }
       }
     }
