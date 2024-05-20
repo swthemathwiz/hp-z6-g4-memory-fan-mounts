@@ -72,7 +72,7 @@ module line_circular( radius, width ) {
 } // end line_circular
 
 //$fn = 36;
-//line( [0,0], [10,10], 2 ); 
-//line( [0,0,0], [10,10,10], 2 ); 
-//line_ray( 45, 0, 10, 2 ); 
-//line_circular( 10, 2 ); 
+//line( [0,0], [10,10], 2 );
+//line( [0,0,0], [10,10,10], 2 );
+//line_ray( 45, 0, 10, 2 );
+//line_circular( 10, 2 );
