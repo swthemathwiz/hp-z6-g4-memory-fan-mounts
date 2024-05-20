@@ -110,6 +110,26 @@ function fan_get_screw_positions(spec) = let ( screw_hole_side = fan_get_attribu
       [ x, y ]
 ]; // end fan_get_screw_positions
 
+// fan_get_screw_count:
+//
+// Returns the number of screws on the fan frount.
+//
+function fan_get_screw_count(spec) = len( fan_get_screw_positions(spec) );
+
+// fan_get_min_screw_to_side_distances:
+//
+// Returns list of the minimal distances from each mounting hole centers
+// to its nearest side as a vector.
+//
+function fan_get_min_screw_to_side_distances( spec ) = let( area = fan_get_attribute( spec, "area" )/2, pos = fan_get_screw_positions( spec ) )
+     [ for( p = pos ) min( abs( p.x - -area.x ), abs( +area.x - p.x ), abs( p.x - -area.y ), abs( area.y - p.y ) ) ];
+
+// fan_get_min_screw_to_side_distance:
+//
+// Returns minimum distance any side to any mounting hole center.
+//
+function fan_get_min_screw_to_side_distance( spec ) = min( fan_get_min_screw_to_side_distances( spec ) );
+
 // fan_demo:
 //
 // Display fan models
