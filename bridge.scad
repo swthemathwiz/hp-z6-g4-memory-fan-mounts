@@ -8,6 +8,7 @@
 //
 
 include <smidge.scad>;
+include <line.scad>;
 
 // _bridge_v2d: convert vector to 2d
 function _bridge_v2d(v) = assert( is_list(v) && len(v) >= 2 ) [ v.x, v.y ];
@@ -21,15 +22,6 @@ function _bridge_v2d(v) = assert( is_list(v) && len(v) >= 2 ) [ v.x, v.y ];
 module bridge_children( pos1, pos2, width, radius=0 ) {
   // fillet: add rounded fillet at joints (per manual)
   module fillet(r) { offset(r = -r) { offset(delta = r) { children(); } } }
-
-  // line: line of <width> between <pos1> and <pos2>
-  module line( pos1, pos2, width ) {
-    r = width/2;
-    hull() {
-      translate( pos1 ) circle( r=r );
-      translate( pos2 ) circle( r=r );
-    }
-  } // end line
 
   // connect: connect the unconnected children
   module connect( pos1, pos2, width, radius ) {
