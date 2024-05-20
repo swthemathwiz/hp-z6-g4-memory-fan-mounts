@@ -14,6 +14,7 @@ include <screw-hole.scad>;
 include <slanted.scad>;
 include <bridge.scad>;
 include <gusset.scad>;
+include <line.scad>;
 
 use <hp-z6-catch-bottom.scad>;
 use <hp-z6-catch-top.scad>;
@@ -24,7 +25,7 @@ use <hp-z6-catch-top.scad>;
 model = "single"; // [ "single", "dual" ]
 
 // Show mount (others for debugging)
-show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan" ]
+show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan", "grommit", "grommits" ]
 
 // Limit width of model in case of dual mounts (or 0 for no limit)
 model_width_limit = 210; // [195:5:265]
@@ -118,6 +119,20 @@ baffle_sec_retainer_width = 5; // [0:.2:8]
 
 // Offset of top corner retainers (mm)
 baffle_sec_retainer_offset = 3; // [2:.2:6]
+
+/* [Grill] */
+
+// Create a grill
+grill_add = true;
+
+// Thickness of the walls of the grill (mm)
+grill_wall_thickness = 2.2; // [1:0.1:5];
+
+// Distance between concentric circles (mm)
+grill_step_distance = 10; // [5:1:20]
+
+// Number of supporting ribs
+grill_ribs = 6; // [4:1:8]
 
 /* [Machine Locations and Sizes] */
 
@@ -280,6 +295,46 @@ module foreach_side_mirrored( mask ) {
 	children();
 } // end foreach_side_mirrored
 
+// fan_grill:
+//
+// Create a grill for a fan
+//
+module fan_grill( fan_spec, height, convexity=10 ) {
+  fan_area = fan_get_attribute( fan_spec, "area" );
+
+  // Force resemblance to 80-mm fan
+  step_distance = grill_step_distance / 80 * fan_get_attribute( fan_spec, "side" );
+
+  // Concentric circle parameters
+  circle_count        = ceil( min( fan_area ) / 2 / step_distance );
+  circle_start_radius = step_distance/2;
+
+  // Ribs parameters
+  rib_delta_angle = 360 / grill_ribs;
+  rib_start_angle = 0;
+
+  linear_extrude( height=height, convexity=convexity ) {
+    intersection() {
+      // Delete any overflow
+      square( fan_area, center=true );
+
+      union() {
+        // Concentric circles
+        for( i = [1:circle_count] ) {
+          r = circle_start_radius + (i-1) * step_distance;
+          line_circular( r, grill_wall_thickness );
+        }
+
+        // Ribs
+        for( i = [1:grill_ribs] ) {
+          a = rib_start_angle + (i-1)*rib_delta_angle;
+          line_ray( a, circle_start_radius, norm( fan_area ) / 2, grill_wall_thickness );
+        }
+      }
+    }
+  }
+} // end fan_grill
+
 // baffle:
 //
 // Creates the squarish baffle with all its attachments. Expansion
@@ -391,36 +446,47 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
   difference() {
     union() {
       difference() {
-	// Baffle frame
-	slanted_rounded_side_cube( baffle_maximal_size, baffle_radius, y_angle=[baffle_to_top_outside_slant_angle(), 0] );
+	union() {
+	  difference() {
+	    // Baffle frame
+	    slanted_rounded_side_cube( baffle_maximal_size, baffle_radius, y_angle=[baffle_to_top_outside_slant_angle(), 0] );
 
-        // Delete non-expanded top and/or bottom (assumes half volume is sufficient)
-	for( i = [0:1] ) {
-	  h       = baffle_thickness+baffle_extra_height+expansion[i];
-	  delta_h = baffle_maximal_size.z - h;
-	  if( delta_h > 0 ) {
-	    rotate( [0,0,180*i] )
-	      translate( [0,-baffle_maximal_size.y/4,h] )
-		rounded_side_cube_upper( [ baffle_maximal_size.x, baffle_maximal_size.y/2, delta_h ] + [ 2*SMIDGE, 2*SMIDGE, SMIDGE ], 0 );
+	    // Delete non-expanded top and/or bottom (assumes half volume is sufficient)
+	    for( i = [0:1] ) {
+	      h       = baffle_thickness+baffle_extra_height+expansion[i];
+	      delta_h = baffle_maximal_size.z - h;
+	      if( delta_h > 0 ) {
+		rotate( [0,0,180*i] )
+		  translate( [0,-baffle_maximal_size.y/4,h] )
+		    rounded_side_cube_upper( [ baffle_maximal_size.x, baffle_maximal_size.y/2, delta_h ] + [ 2*SMIDGE, 2*SMIDGE, SMIDGE ], 0 );
+	      }
+	    }
+
+	    // Mostly decorative beveled cutback on 2-sides of baffle frame
+	    side_cutout_deletion( fan_spec );
+
+	    // Entirely delete the top baffle wall for a top loader
+	    if( is_top_loader ) {
+	      translate( [ -baffle_maximal_size.x/2, baffle_maximal_size.y/2 - baffle_extra_side, 0 ] - [SMIDGE, SMIDGE, SMIDGE] )
+		cube( [ baffle_maximal_size.x, baffle_extra_side, baffle_maximal_size.z ] + [ 2*SMIDGE, 2*SMIDGE, 2*SMIDGE ] );
+	    }
+
+	    // Retainer cut outs in corners
+	    translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
+	      sec_retainer_deletion( fan_spec, baffle_sec_retainer_width, baffle_sec_retainer_offset );
 	  }
+
+	  // Attach any children, prior to deletions of space for the fan components
+	  children();
 	}
 
-	// Mostly decorative beveled cutback on 2-sides of baffle frame
-        side_cutout_deletion( fan_spec );
-
-        // Entirely delete the top baffle wall for a top loader
-        if( is_top_loader ) {
-          translate( [ -baffle_maximal_size.x/2, baffle_maximal_size.y/2 - baffle_extra_side, 0 ] - [SMIDGE, SMIDGE, SMIDGE] )
-	    cube( [ baffle_maximal_size.x, baffle_extra_side, baffle_maximal_size.z ] + [ 2*SMIDGE, 2*SMIDGE, 2*SMIDGE ] );
-        }
-
-        // Retainer cut outs in corners
-        translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
-	  sec_retainer_deletion( fan_spec, baffle_sec_retainer_width, baffle_sec_retainer_offset );
+	// Air-hole cutout
+	air_hole_deletion( fan_spec );
       }
 
-      // Attach any children, prior to deletions of space for the fan components
-      children();
+      // Add the grill after air-hole deletion and before body/hole deletion
+      if( grill_add )
+	fan_grill( fan_spec, baffle_thickness );
     }
 
     // Slightly-oversized hole for fan
@@ -428,9 +494,6 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 
     // Fan/Guard mounting holes (possibly countersunk)
     mounting_hole_deletion( fan_spec );
-
-    // Air-hole cutout
-    air_hole_deletion( fan_spec );
   }
 } // end baffle
 
@@ -580,9 +643,62 @@ module dual_mount() {
   }
 } // end dual_mount
 
+// grommit:
+//
+// A washer shaped for a fan screw's counter sink head
+//
+module grommit( fan_spec ) {
+  // Mounting screw diameter (mm)
+  fan_screw_hole_diameter = fan_get_attribute( fan_spec, "screw_hole_diameter" );
+
+  // Minimal screw center to side (mm)
+  fan_screw_to_side = fan_get_min_screw_to_side_distance( fan_spec );
+
+  // Grommit itself
+  grommit_height = 2.0;
+  grommit_radius = min( 10/2, (fan_screw_to_side + baffle_extra_side) );
+  grommit_volume = [ 2*grommit_radius, 2*grommit_radius, grommit_height ];
+  //echo( "Grommit Radius = ", grommit_radius );
+
+  // Screw hole size and countersinking
+  screw_hole_diameter = fan_screw_hole_diameter+0.35;
+
+  difference() {
+    rounded_top_volume( grommit_volume, radius=0.4, c=[ 0, 0, grommit_height/2 ] ) {
+      cylinder( h=grommit_height, r=grommit_radius );
+    }
+
+    screw_hole( [0,0], grommit_height, screw_hole_diameter, countersink=true, countersink_multiplier=1.5, countersink_top=true );
+  }
+} // end grommit
+
+// grommits:
+//
+// Fan screw grommits for each hole
+//
+module grommits( fan_spec ) {
+  // Side of mounting holes center square (mm)
+  fan_screw_hole_count = fan_get_screw_count( fan_spec );
+
+  // distribute: Place an element at a <distance> from the origin, rotated <rotation> degrees
+  module distribute( rotation, distance ) {
+    rotate( rotation ) translate([distance,0,0]) children();
+  } // end distribute
+
+  // For each screw hole
+  for( i = [0:fan_screw_hole_count-1] ) {
+    distribute( 360 / fan_screw_hole_count * i, 11 )
+      grommit( fan_spec );
+  }
+} // end grommits
+
 $fn = 64;
 if( show_selection == "fan" )
   show_fan_model();
+else if( show_selection == "grommits" )
+  grommits( pri_fan_spec );
+else if( show_selection == "grommit" )
+  grommit( pri_fan_spec );
 else { // shows mount
 //intersection() {
   if( model != "single" )
