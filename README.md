@@ -55,7 +55,7 @@ that this is a wide model - about 210 mm.
 
 </td></tr></tbody></table></div>
 
-<div class="model" data-name="Countersunk Washers" data-icon-size="128" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.stl" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.icon.png" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+<div class="model" data-name="Countersunk Washers" data-icon-size="128" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.stl" target="_blank" title="View Countersunk Washers Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.icon.png" alt="Countersunk Washers Model" width="128" height="128" /></a></td><td>
 
 ### Countersunk Washers
 
