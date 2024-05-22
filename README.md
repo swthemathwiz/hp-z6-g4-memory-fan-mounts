@@ -55,6 +55,15 @@ that this is a wide model - about 210 mm.
 
 </td></tr></tbody></table></div>
 
+<div class="model" data-name="Countersunk Washers" data-icon-size="128" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.stl" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.icon.png" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+
+### Countersunk Washers
+
+This is a set of 4 countersunk washers used to secure fans
+in the mounts using fan screws. They make the fan screws flush.
+
+</td></tr></tbody></table></div>
+
 ## A Note on HP Workstation 4-Pin Fan Connectors
 
 The "standard" 4-pin HP Workstation fan connector is somewhat proprietary mechanically. Older fans tend
@@ -173,6 +182,33 @@ and you get something like this:
 
 <p align="center"><img src="../media/media/cable.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable" height="200px" /></p>
 
+Test your cable by connecting a known-working 4-pin PWM fan to the
+motherboard. The Z6's BIOS automatically detects the fan from the RPM Sense
+input.
+
+On Linux kernel > 6.5, verify fan presence detect and RPM by using lm-sensors and
+the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
+"Memory Fan0" is for the fan connected to the shroud header and "Memory Fan1" is
+for the front fan:
+
+```shell
+% sudo modprobe hp-wmi-sensors
+% sensors
+...
+hp_wmi_sensors-virtual-0
+Adapter: Virtual device
+CPU0 Fan:                   4580 RPM
+Rear Chassis Fan0:          2945 RPM
+Front Chassis Fan0:         2426 RPM
+Memory Fan0:                2614 RPM
+Memory Fan1:                4501 RPM
+...
+```
+
+On Windows, install the [HP Performance Advisor](https://www.hp.com/us-en/workstations/performance-advisor.html)
+software and verify the fan presence by looking for "Memory Fan0"
+presence and RPM under "Your Computer" → "System Sensors".
+
 #### A Second 80- or 92-mm Fan, Another Fan Guard, and Four More Case Fan Screws
 
 For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
@@ -198,13 +234,15 @@ See above for recommendations on the [fan guard](#guard) and [case fan screws](#
 
 ## Printing
 
-I use a Creality Ender 3 Pro to build from PLA with a **layer height of 0.2 mm**
+For the washers, print from PLA with a **layer height of 0.12 mm** and **infill density of 50%**
+or higher. Print one set of washers per fan.
+
+For the mounts, print from PLA with a **layer height of 0.2 mm**
 and **infill density of 20%** with **support generation**. In Cura, I
 set "Support Placement" to "Touching Build Plate" and "Support Overhang Angle" set
-to 45 degrees (the default).
-
-After printing, remove the generated supports (at least 4 pieces: two under the
-bottom tangs, two under the top tabs) and clean-up the print with utility knife.
+to 45 degrees (the default). After printing, remove the generated supports
+(at least 4 pieces: two under the bottom tangs, two under the top tabs) and
+clean-up the print with utility knife.
 
 ## Installation
 
@@ -220,7 +258,7 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
 3.  For a dual setup, rearrange any cable flow between the 5 1/4" drive bays
     and the motherboard to open up space. For example, push unused drive
     and CD-ROM power cables into the drive bays. Essential, create a
-    hole in the area that fits the secondard fan.
+    hole in the area that fits the secondary fan.
 
     <p align="center"><img src="../media/media/clean-out.jpg" alt="Create a Hole" height="200px" /></p>
 
@@ -257,25 +295,6 @@ bottom tangs, two under the top tabs) and clean-up the print with utility knife.
     of the memory fans in your HP Z6\! If you want to test higher fan speeds,
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
     Speed(%) → 100 to create a small hurricane.
-
-    On Linux kernel > 6.5, verify fan presence detect and RPM by using lm-sensors and
-    the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
-    "Memory Fan0" is for the fan connected to the shroud header and "Memory Fan1" is
-    for the front fan:
-
-    ```shell
-    % sudo modprobe hp-wmi-sensors
-    % sensors
-    ...
-    hp_wmi_sensors-virtual-0
-    Adapter: Virtual device
-    CPU0 Fan:                   4580 RPM
-    Rear Chassis Fan0:          2945 RPM
-    Front Chassis Fan0:         2426 RPM
-    Memory Fan0:                2614 RPM
-    Memory Fan1:                4501 RPM
-    ...
-    ```
 
 ## Source
 
