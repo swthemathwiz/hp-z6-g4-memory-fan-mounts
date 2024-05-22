@@ -25,7 +25,7 @@ use <hp-z6-catch-top.scad>;
 model = "single"; // [ "single", "dual" ]
 
 // Show mount (others for debugging)
-show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan", "grommit", "grommits" ]
+show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan", "washer", "washers" ]
 
 // Limit width of model in case of dual mounts (or 0 for no limit)
 model_width_limit = 210; // [195:5:265]
@@ -115,10 +115,10 @@ baffle_effective_side_thickness = baffle_extra_side-baffle_overfit_min;
 baffle_side_height_min = max( baffle_extra_height - baffle_side_cutout_height, 0 ) + baffle_thickness;
 
 // Width of top corner retainers or zero for none (mm)
-baffle_sec_retainer_width = 5; // [0:.2:8]
+baffle_security_retainer_width = 5; // [0:.2:8]
 
 // Offset of top corner retainers (mm)
-baffle_sec_retainer_offset = 3; // [2:.2:6]
+baffle_security_retainer_offset = 3; // [2:.2:6]
 
 /* [Grill] */
 
@@ -136,6 +136,17 @@ grill_step_distance = 10; // [5:1:20]
 
 // Number of supporting ribs
 grill_ribs = 6; // [4:1:8]
+
+// Starting angle of rib pattern - polar standard (degrees)
+grill_rib_start_angle = 105; // [0:5:360]
+
+/* [Washer] */
+
+// Thickness of the washer (mm)
+washer_height = 2.0; // [1:0.1:3]
+
+// Diameter of washer (mm)
+washer_diameter = 10; // [8:1:14]
 
 /* [Machine Locations and Sizes] */
 
@@ -298,6 +309,15 @@ module foreach_side_mirrored( mask ) {
 	children();
 } // end foreach_side_mirrored
 
+// replicate_n: Replicate elements at a <distance> from the origin, rotated <theta> degrees
+module replicate_n( n, distance = 0 ) {
+  theta = 360/n;
+  for( i = [0:n-1] )
+    translate( concat( polar_to_cartesian( theta*i, distance ), 0 ) )
+      rotate( [ 0, 0, theta*i ] )
+        children();
+} // end replicate_n
+
 // fan_grill:
 //
 // Create a grill for a fan
@@ -313,8 +333,6 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
   circle_start_radius = step_distance/2;
 
   // Ribs parameters
-  rib_delta_angle = 360 / grill_ribs;
-  rib_start_angle = 0;
   rib_max_length  = norm( fan_area ) / 2;
 
   linear_extrude( height=thickness, convexity=convexity ) {
@@ -330,10 +348,8 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
         }
 
         // Ribs
-        for( i = [1:grill_ribs] ) {
-          a = rib_start_angle + (i-1)*rib_delta_angle;
-          line_ray( a, circle_start_radius, rib_max_length, grill_line_width );
-        }
+        replicate_n( grill_ribs )
+          line_ray( grill_rib_start_angle, circle_start_radius, rib_max_length, grill_line_width );
       }
     }
   }
@@ -429,23 +445,23 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
     }
   } // end side_cutout_deletion
 
-  // sec_retainer_deletion:
+  // security_retainer_deletion:
   //
   // Small triangular cutouts at the top of the sides of baffle frame
   //
-  module sec_retainer_deletion( fan_spec, width, delta=4 ) {
+  module security_retainer_deletion( fan_spec, width, delta=4 ) {
     if( width > 0 ) {
       baffle_top_size  = baffle_get_area_with_height( fan_spec, baffle_thickness+baffle_extra_height+expansion[1] );
       top_corner_pos   = [ baffle_top_size.x/2, baffle_top_size.y/2, baffle_top_size.z ];
-      sec_retainer_pos = top_corner_pos - [ 0, max( delta + baffle_radius/2, baffle_effective_side_thickness ), delta ];
+      security_retainer_pos = top_corner_pos - [ 0, max( delta + baffle_radius/2, baffle_effective_side_thickness ), delta ];
 
       foreach_side_mirrored( [0,2] )
-	translate( sec_retainer_pos + [ SMIDGE, 0, 0 ]  )
+	translate( security_retainer_pos + [ SMIDGE, 0, 0 ]  )
 	  rotate( [0, -90, 0 ] )
 	    linear_extrude( height=baffle_effective_side_thickness+2*SMIDGE )
 	      polygon( [[ 0, 0 ], [ -width, 0 ], [ 0, -width ]] );
     }
-  } // end sec_retainer_deletion
+  } // end security_retainer_deletion
 
   difference() {
     union() {
@@ -477,7 +493,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 
 	    // Retainer cut outs in corners
 	    translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
-	      sec_retainer_deletion( fan_spec, baffle_sec_retainer_width, baffle_sec_retainer_offset );
+	      security_retainer_deletion( fan_spec, baffle_security_retainer_width, baffle_security_retainer_offset );
 	  }
 
 	  // Attach any children, prior to deletions of space for the fan components
@@ -573,7 +589,7 @@ module single_mount() {
     // Put a thumbnail behind each top catch slot
     for( pos = top_catch_get_slot_centers() )
       translate( machine_to_model( machine_top_tabs_center ) + [ pos.x, baffle_effective_side_thickness+SMIDGE, -pri_thumbnail_offset ] )
-	rotate( [ 90, 180, 0 ] )
+        rotate( [ 90, 180, 0 ] )
 	  linear_extrude( height=2*baffle_effective_side_thickness+2*SMIDGE )
 	    thumbnail( pri_thumbnail_width, pri_thumbnail_height );
   } // end top_thumbnails
@@ -647,62 +663,52 @@ module dual_mount() {
   }
 } // end dual_mount
 
-// grommit:
+// washer:
 //
-// A washer shaped for a fan screw's counter sink head
+// A countersunk washer shaped for a fan screw's head
 //
-module grommit( fan_spec ) {
+module washer( fan_spec ) {
   // Mounting screw diameter (mm)
   fan_screw_hole_diameter = fan_get_attribute( fan_spec, "screw_hole_diameter" );
 
   // Minimal screw center to side (mm)
   fan_screw_to_side = fan_get_min_screw_to_side_distance( fan_spec );
 
-  // Grommit itself
-  grommit_height = 2.0;
-  grommit_radius = min( 10/2, (fan_screw_to_side + baffle_extra_side) );
-  grommit_volume = [ 2*grommit_radius, 2*grommit_radius, grommit_height ];
-  //echo( "Grommit Radius = ", grommit_radius );
+  // Washer itself
+  washer_effective_diameter = min( washer_diameter, 2*(fan_screw_to_side + baffle_extra_side) );
+  washer_volume             = [ washer_effective_diameter, washer_effective_diameter, washer_height ];
+  //echo( "Washer Diameter = ", washer_effective_diameter );
 
   // Screw hole size and countersinking
   screw_hole_diameter = fan_screw_hole_diameter+0.35;
 
   difference() {
-    rounded_top_volume( grommit_volume, radius=0.4, c=[ 0, 0, grommit_height/2 ] ) {
-      cylinder( h=grommit_height, r=grommit_radius );
-    }
+    // Washer itself
+    rounded_top_volume( washer_volume, radius=0.4, c=[ 0, 0, washer_height/2 ] )
+      cylinder( h=washer_height, d=washer_effective_diameter );
 
-    screw_hole( [0,0], grommit_height, screw_hole_diameter, countersink=true, countersink_multiplier=1.5, countersink_top=true );
+    // Countersunk hole
+    screw_hole( [0,0], washer_height, screw_hole_diameter, countersink=true, countersink_multiplier=1.5, countersink_top=true );
   }
-} // end grommit
+} // end washer
 
-// grommits:
+// washers:
 //
-// Fan screw grommits for each hole
+// Fan screw countersunk washers for each hole
 //
-module grommits( fan_spec ) {
-  // Side of mounting holes center square (mm)
-  fan_screw_hole_count = fan_get_screw_count( fan_spec );
-
-  // distribute: Place an element at a <distance> from the origin, rotated <rotation> degrees
-  module distribute( rotation, distance ) {
-    rotate( rotation ) translate([distance,0,0]) children();
-  } // end distribute
-
-  // For each screw hole
-  for( i = [0:fan_screw_hole_count-1] ) {
-    distribute( 360 / fan_screw_hole_count * i, 11 )
-      grommit( fan_spec );
-  }
-} // end grommits
+module washers( fan_spec ) {
+  // Replicate a washer for each screw hole
+  replicate_n( fan_get_screw_count( fan_spec ), (washer_diameter+2)/sqrt(2) )
+    washer( fan_spec );
+} // end washers
 
 $fn = 64;
 if( show_selection == "fan" )
   show_fan_model();
-else if( show_selection == "grommits" )
-  grommits( pri_fan_spec );
-else if( show_selection == "grommit" )
-  grommit( pri_fan_spec );
+else if( show_selection == "washers" )
+  washers( pri_fan_spec );
+else if( show_selection == "washer" )
+  washer( pri_fan_spec );
 else { // shows mount
 //intersection() {
   if( model != "single" )
