@@ -7,6 +7,8 @@
 // Desc:    Line utilities
 //
 
+include <polar.scad>;
+
 // line:
 //
 // Create a two or three dimensional line of <width> between <pos1> and <pos2>
@@ -50,10 +52,7 @@ module line_ray( angle, radius_start, radius_finish, width ) {
   assert( is_num( radius_finish ) );
 
   // Convert to polar coordinates
-  p_start  = [ sin(angle) * radius_start,  cos( angle ) * radius_start  ];
-  p_finish = [ sin(angle) * radius_finish, cos( angle ) * radius_finish ];
-
-  line( p_start, p_finish, width );
+  line( polar_to_cartesian( angle, radius_start ), polar_to_cartesian( angle, radius_finish ), width );
 } // end line_ray
 
 // line_circular:
