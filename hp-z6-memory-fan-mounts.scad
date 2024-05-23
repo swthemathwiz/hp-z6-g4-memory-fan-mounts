@@ -28,7 +28,7 @@ model = "single"; // [ "single", "dual" ]
 show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan", "washer", "washers" ]
 
 // Limit width of model in case of dual mounts (or 0 for no limit)
-model_width_limit = 210; // [195:5:265]
+model_width_limit = 220; // [195:5:265]
 
 /* [Primary Fan] */
 
@@ -56,7 +56,7 @@ sec_fan_model = "80x80x25"; // [ "80x80x25", "92x92x25", "120x120x25" ]
 sec_fan_spec = fan_get_spec( sec_fan_model );
 
 // Position of secondary fan relative to middle DIMM slot (mm)
-sec_fan_offset = 0; // [-30:1:30]
+sec_fan_offset = 0; // [-40:1:40]
 
 // Height of secondary fan above primary fan (mm)
 sec_fan_height = +10; // [0:1:60]
@@ -66,6 +66,9 @@ sec_bridge_width  = 6; // [3:1:12]
 
 // Primary to secondary bridge count and offsets (mm)
 sec_bridge_pos = [-5,+10,+25];
+
+// Trim secondary fan cage depth to fit fan
+sec_baffle_trim_to_fit = true;
 
 /* [Baffle] */
 
@@ -230,7 +233,8 @@ pri_fan_baffle_total_height = pri_baffle_total_size.z + pri_fan_baffle_expansion
 function pri_fan_get_model_pos() = [ 0, 0 ];
 
 // Secondary fan expansion
-sec_fan_baffle_expansion = [ 0, 0 ];
+sec_fan_baffle_expansion = [ sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.2 - baffle_extra_height : 0,
+                             sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.2 - baffle_extra_height : 0 ];
 
 // Secondary fan center model position
 function sec_fan_get_model_pos() = [ machine_to_model( machine_second_fan_bottom_front ).x, machine_to_model( machine_second_fan_bottom_front ).y ];
@@ -333,7 +337,7 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
   circle_start_radius = step_distance/2;
 
   // Ribs parameters
-  rib_max_length  = norm( fan_area ) / 2;
+  rib_max_length = norm( fan_area ) / 2;
 
   linear_extrude( height=thickness, convexity=convexity ) {
     intersection() {
@@ -342,10 +346,8 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
 
       union() {
         // Concentric circles
-        for( i = [1:circle_count] ) {
-          r = circle_start_radius + (i-1) * step_distance;
-          line_circular( r, grill_line_width );
-        }
+        for( i = [1:circle_count] )
+          line_circular( circle_start_radius + (i-1) * step_distance, grill_line_width );
 
         // Ribs
         replicate_n( grill_ribs )
@@ -428,17 +430,17 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 
   // side_cutout_deletion:
   //
-  // Mostly decorative beveled cutback on 2-sides of baffle frame
+  // Mostly decorative beveled cutback on selected sides of baffle frame
   //
-  module side_cutout_deletion( fan_spec ) {
+  module side_cutout_deletion( fan_spec, mask, side_cutout_offset=0 ) {
     // Cutout
-    baffle_side_cutout_area = [ baffle_side_cutout_percentage/100*baffle_maximal_size.y, baffle_maximal_size.x/2 ];
+    baffle_side_cutout_area = [ baffle_side_cutout_percentage/100*baffle_maximal_size.y, baffle_maximal_size.x ];
     baffle_side_cutout_size = concat( baffle_side_cutout_area, ( min( baffle_extra_height, baffle_side_cutout_height ) + max(expansion) ) );
 
     if( baffle_side_cutout_percentage > 0 && baffle_side_cutout_size.z > 0 ) {
       h = max( fan_get_attribute( fan_spec, "area" ) );
-      translate( [0,baffle_side_cutout_offset,0] )
-	foreach_side_rotated( [1,3] )
+      translate( [0,side_cutout_offset,0] )
+	foreach_side_rotated( mask )
 	  translate( [0,baffle_side_cutout_size.y/2,baffle_maximal_size.z+h] + [ SMIDGE, SMIDGE, SMIDGE ] )
 	    rotate( [180,0,0] )
 	      slanted_cube( baffle_side_cutout_size + [2*SMIDGE,2*SMIDGE,h+SMIDGE], x_angle=90-baffle_side_cutout_slant, invert=true );
@@ -459,7 +461,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 	translate( security_retainer_pos + [ SMIDGE, 0, 0 ]  )
 	  rotate( [0, -90, 0 ] )
 	    linear_extrude( height=baffle_effective_side_thickness+2*SMIDGE )
-	      polygon( [[ 0, 0 ], [ -width, 0 ], [ 0, -width ]] );
+	      polygon( [[ -width, -width ], [ -width, 0 ], [ 0, -width ]] );
     }
   } // end security_retainer_deletion
 
@@ -482,8 +484,12 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 	      }
 	    }
 
-	    // Mostly decorative beveled cutback on 2-sides of baffle frame
-	    side_cutout_deletion( fan_spec );
+	    // Mostly decorative beveled cutback on sides of baffle frame
+	    side_cutout_deletion( fan_spec, [1,3], baffle_side_cutout_offset );
+
+            // Mostly decorative beveled cutback on top and bottom of baffle frame if no attachments
+	    if( $children == 0 )
+	      side_cutout_deletion( fan_spec, [2,4], 0 );
 
 	    // Entirely delete the top baffle wall for a top loader
 	    if( is_top_loader ) {
@@ -589,7 +595,7 @@ module single_mount() {
     // Put a thumbnail behind each top catch slot
     for( pos = top_catch_get_slot_centers() )
       translate( machine_to_model( machine_top_tabs_center ) + [ pos.x, baffle_effective_side_thickness+SMIDGE, -pri_thumbnail_offset ] )
-        rotate( [ 90, 180, 0 ] )
+	rotate( [ 90, 0, 0 ] )
 	  linear_extrude( height=2*baffle_effective_side_thickness+2*SMIDGE )
 	    thumbnail( pri_thumbnail_width, pri_thumbnail_height );
   } // end top_thumbnails
