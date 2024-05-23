@@ -88,7 +88,7 @@ baffle_radius = 2; // [0:0.5:5]
 baffle_air_hole_slant = 80; // [70:5:90]
 
 // Extra space between fan and baffle (mm per side)
-baffle_fan_spacing_side = 0.2; // [0.0:0.1:1]
+baffle_fan_spacing_side = 0.4; // [0.0:0.1:1]
 
 // Decorative radius in space between fan and baffle (mm)
 baffle_fan_spacing_radius = 0.2; // [0:0.1:2]
