@@ -112,7 +112,7 @@ function fan_get_screw_positions(spec) = let ( screw_hole_side = fan_get_attribu
 
 // fan_get_screw_count:
 //
-// Returns the number of screws on the fan frount.
+// Returns the number of screws on the fan front.
 //
 function fan_get_screw_count(spec) = len( fan_get_screw_positions(spec) );
 
