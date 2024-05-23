@@ -11,5 +11,5 @@
 //
 // Convert polar coordinates (<theta>, <radius>) to cartesian [ <x>, <y> ]
 //
-function polar_to_cartesian( theta, radius ) = assert( is_num(theta) && is_num(radius) )  
+function polar_to_cartesian( theta, radius ) = assert( is_num(theta) && is_num(radius) )
   [ cos(theta) * radius, sin(theta) * radius ];
