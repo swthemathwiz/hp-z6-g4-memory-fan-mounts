@@ -83,8 +83,6 @@ on the PC-style connector or by transplanting the terminals to an HP-style conne
 
 If you're missing a front memory fan, then you'll need a fan. Otherwise, you can
 reuse the existing fan and get case fan screws.
-Note that the dual mount replaces the existing single memory fan mount,
-so to some extent the same directions apply.
 
 ### An HP-Compatible 80-mm Fan <a name="fan80"/>
 
@@ -112,15 +110,14 @@ memory fan.
 
 These seem more or less standard - silver or black, about 10 mm in length, very
 coarse thread. Make sure these are on the long side since they have
-to go through 4 mm of plastic instead of 1 mm of sheet metal before
-securing the fan.
+to go through 4 mm of plastic instead of 1 to 2 mm of metal before
+reaching the fan.
 
 ## What You'll Need for the Dual Mount <a name="secondary"/>
 
 The dual mount adds an additional fan that hangs off the primary
-mount. So in addition to everything you need for the [primary](#primary)
-mount, there's a second fan to install in the mount and a fan adapter
-cable, which you have to build.
+mount. So in addition to everything necessary for the [primary](#primary)
+mount, you need a second fan and a fan adapter cable, which you have to build.
 
 ### A Second 80- or 92-mm Fan and Four More Case Fan Screws
 
@@ -285,7 +282,7 @@ clean-up the print with utility knife.
 7.  Plug in the fan(s), reattach any hardware, power on and enjoy the cool breeze
     of the memory fans in your HP Z6\! If you want to test higher fan speeds,
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
-    Speed(%) → 100 to create a small :tornado:.
+    Speed(%) → 100 to create a small tornado :tornado:.
 
 ## Source
 
