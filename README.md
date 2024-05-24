@@ -264,7 +264,7 @@ clean-up the print with utility knife.
 
     - Insert fans from back (fan labels forward), ensuring that the
       cables are routed nearest to connectors.
-    - Screw the fans to the front of the mount thru countersunk washers.
+    - Screw fans to the front of the mount with case fan screws thru countersunk washers.
 
     <p align="center"><img src="../media/media/assembled.jpg" alt="Fan with Mount Assembled"  height="350px" /></p>
 
@@ -285,7 +285,7 @@ clean-up the print with utility knife.
 7.  Plug in the fan(s), reattach any hardware, power on and enjoy the cool breeze
     of the memory fans in your HP Z6\! If you want to test higher fan speeds,
     reboot into the BIOS Setup → Advanced → Built-In Device Options → Increase Idle Fan
-    Speed(%) → 100 to create a small hurricane.
+    Speed(%) → 100 to create a small :tornado:.
 
 ## Source
 
