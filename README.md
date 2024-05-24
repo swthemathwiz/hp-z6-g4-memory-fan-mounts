@@ -6,7 +6,7 @@ These are 3D-Printable [OpenSCAD](https://openscad.org/) models to
 mount memory fans in an HP Z6 G4 workstation. These are in no way endorsed by HP.
 Also, the author is not responsible for any damage resulting from their use.
 
-<p align="center"><img src="../media/media/hp-z6-dual-memory-fan-mount.installed.jpg" alt="HP Z6 G4 with Dual Front Fan Mount"  height="350px" /></p>
+<p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 with Dual Front Fan Mount"  height="350px" /></p>
 
 ## Caveats
 
@@ -22,9 +22,9 @@ size past 32GB on a single CPU setup, it's probably sufficient.
 
 ## Model and Parts
 
-Three models are produced:
+Four models are produced:
 
-<div class="model" data-name="HP Z6 G4 Single 80 Memory Fan Mount" data-icon-size="128" data-left="hp-z6-memory-fan-mount-single-80.installed.jpg" data-right-icon="hp-z6-memory-fan-mount-single-80.icon.png" data-right="hp-z6-memory-fan-mount-single-80.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" target="_blank" title="View HP Z6 G4 Single 80 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" alt="HP Z6 G4 Single 80 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+<div class="model" data-name="HP Z6 G4 Single 80 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-single-80.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-single-80.icon.png" data-left="hp-z6-memory-fan-mount-single-80.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" target="_blank" title="View HP Z6 G4 Single 80 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" alt="HP Z6 G4 Single 80 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
 
 ### HP Z6 G4 Single 80 Memory Fan Mount
 
@@ -34,7 +34,7 @@ middle part of an HP Z6 G4 workstation.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-single-80.stl" target="_blank" title="View HP Z6 G4 Single 80 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-single-80.icon.png" alt="HP Z6 G4 Single 80 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
-<div class="model" data-name="HP Z6 G4 Dual 80/80 Memory Fan Mount" data-icon-size="128" data-left="hp-z6-memory-fan-mount-dual-80-80.installed.jpg" data-right-icon="hp-z6-memory-fan-mount-dual-80-80.icon.png" data-right="hp-z6-memory-fan-mount-dual-80-80.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 Dual 80/80 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+<div class="model" data-name="HP Z6 G4 Dual 80/80 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-80.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-80.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-80.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 Dual 80/80 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
 
 ### HP Z6 G4 Dual 80/80 Memory Fan Mount
 
@@ -46,7 +46,7 @@ less than 200 mm.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80.stl" target="_blank" title="View HP Z6 G4 Dual 80/80 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.icon.png" alt="HP Z6 G4 Dual 80/80 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
-<div class="model" data-name="HP Z6 G4 Dual 80/92 Memory Fan Mount" data-icon-size="128" data-left="hp-z6-memory-fan-mount-dual-80-92.installed.jpg" data-right-icon="hp-z6-memory-fan-mount-dual-80-92.icon.png" data-right="hp-z6-memory-fan-mount-dual-80-92.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+<div class="model" data-name="HP Z6 G4 Dual 80/92 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-92.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-92.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-92.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
 
 ### HP Z6 G4 Dual 80/92 Memory Fan Mount
 
@@ -55,7 +55,7 @@ as the 80-mm model, the secondary fan just is larger and closer to the primary.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-92.stl" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-92.icon.png" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
-<div class="model" data-name="Countersunk Washers" data-icon-size="128" data-left="hp-z6-memory-fan-mount-washers.installed.jpg" data-right-icon="hp-z6-memory-fan-mount-washers.icon.png" data-right="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" target="_blank" title="View Countersunk Washers Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" alt="Countersunk Washers Model" width="128" height="128" /></a></td><td>
+<div class="model" data-name="Countersunk Washers" data-icon-size="128" data-right="hp-z6-memory-fan-mount-washers.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" target="_blank" title="View Countersunk Washers Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" alt="Countersunk Washers Model" width="128" height="128" /></a></td><td>
 
 ### Countersunk Washers
 
@@ -79,16 +79,14 @@ If you want to connect a PC-style PWM fan to an HP-style motherboard header, you
 need to modify the connector. You can do this either by shaving the middle key
 on the PC-style connector or by transplanting the terminals to an HP-style connector.
 
-## What You'll Need...
-
-### ...for the Single Mount
+## What You'll Need for the Single Mount <a named="primary"/>
 
 If you're missing a front memory fan, then you'll need a fan. Otherwise, you can
 reuse the existing fan and get case fan screws.
 Note that the dual mount replaces the existing single memory fan mount,
 so to some extent the same directions apply.
 
-#### An HP-Compatible 80-mm Fan  <a name="fan80" />
+### An HP-Compatible 80-mm Fan <a name="fan80"/>
 
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
@@ -108,20 +106,46 @@ a stock fan. Some 80-mm fans I spotted with an HP-style connector:
 I reused the stock fan and have not tested any other fans as the primary
 memory fan.
 
-#### Four Case Fan Screws <a name="screws" />
+### Four Case Fan Screws <a name="screws"/>
 
 <img src="../media/media/screws.jpg" alt="Case Fan Screws" align="right" width="60px" height="60px" />
 
 These seem more or less standard - silver or black, about 10 mm in length, very
-coarse thread. Skip the plastic push-pins/rivets and rubber connectors.
+coarse thread. Make sure these are on the long side since they have
+to go through 4 mm of plastic instead of 1 mm of sheet metal before
+securing the fan.
 
-### ...for the Dual Mount
+## What You'll Need for the Dual Mount <a name="secondary"/>
 
 The dual mount adds an additional fan that hangs off the primary
-mount. There's a fan adapter cable, which you have to build, and a second fan
-to install in the mount.
+mount. So in addition to everything you need for the [primary](#primary)
+mount, there's a second fan to install in the mount and a fan adapter
+cable, which you have to build.
 
-#### Fan Adapter Cable <a name="cable" />
+### A Second 80- or 92-mm Fan and Four More Case Fan Screws
+
+For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
+PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
+
+For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
+a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
+plentiful on ebay. Other choices are listed [above](#fan80).
+
+For a 92-mm secondary fan, here are some HP-compatible fans I've
+seen on ebay:
+
+- Foxconn PV902512PSPF (0.40A) from HP/Compaq DCxx00 (HP: 435452-001, 432768-001, 451144-001)
+- Nidec T92T12MS3A7-57A03 (0.35A) from the Zxx0 series (HP: 647113-001 Rev. B, 749598-001, and 782506-001)
+- Delta QUR0912VH (0.60A) from the Z4x0 series (HP: 647113-001 Rev. A)
+- Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
+- Delta AUB0912HH (0.40A) (HP: 411456-001)
+
+In any case, choose a secondary fan with a cable long enough to
+reach your fan adapter cable (about 6 inches for the above setup).
+
+See above for recommendations on the [case fan screws](#screws).
+
+### Fan Adapter Cable <a name="cable"/>
 
 This information was taken or derived partially from:
 [u/chestertonfan](https://www.reddit.com/r/HSpecWorkstations/comments/1aovkmw/hp_z6_g4_ram_upgrade_and_how_to_prevent_memory/),
@@ -198,29 +222,6 @@ Memory Fan1:                4501 RPM
 On Windows, install the [HP Performance Advisor](https://www.hp.com/us-en/workstations/performance-advisor.html)
 software and verify the fan presence by looking for "Memory Fan0"
 presence and RPM under "Your Computer" → "System Sensors".
-
-#### A Second 80- or 92-mm Fan and Four More Case Fan Screws
-
-For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
-PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
-
-For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
-a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
-plentiful on ebay. Other choices are listed [above](#fan80).
-
-For a 92-mm secondary fan, here are some HP-compatible fans I've
-seen on ebay:
-
-- Foxconn PV902512PSPF (0.40A) from HP/Compaq DCxx00 (HP: 435452-001, 432768-001, 451144-001)
-- Nidec T92T12MS3A7-57A03 (0.35A) from the Zxx0 series (HP: 647113-001 Rev. B, 749598-001, and 782506-001)
-- Delta QUR0912VH (0.60A) from the Z4x0 series (HP: 647113-001 Rev. A)
-- Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
-- Delta AUB0912HH (0.40A) (HP: 411456-001)
-
-In any case, choose a secondary fan with a cable long enough to
-reach your fan adapter cable (about 6 inches for the above setup).
-
-See above for recommendations on the [case fan screws](#screws).
 
 ## Printing
 
