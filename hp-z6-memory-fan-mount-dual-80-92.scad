@@ -10,3 +10,4 @@
 include <hp-z6-memory-fan-mounts.scad>
 model = "dual";
 sec_fan_model = "92x92x25";
+sec_fan_offset = -16;

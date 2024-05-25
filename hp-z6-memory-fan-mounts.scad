@@ -56,7 +56,7 @@ sec_fan_model = "80x80x25"; // [ "80x80x25", "92x92x25", "120x120x25" ]
 sec_fan_spec = fan_get_spec( sec_fan_model );
 
 // Position of secondary fan relative to middle DIMM slot (mm)
-sec_fan_offset = 0; // [-40:1:40]
+sec_fan_offset = -10; // [-40:1:40]
 
 // Height of secondary fan above primary fan (mm)
 sec_fan_height = +10; // [0:1:60]
@@ -113,9 +113,6 @@ baffle_overfit_min = max( 0, min( baffle_fan_spacing_side, baffle_extra_side) );
 
 // Effective thickness of baffle side after extra side space cut out (mm per side)
 baffle_effective_side_thickness = baffle_extra_side-baffle_overfit_min;
-
-// Minimum height of baffle side (mm)
-baffle_side_height_min = max( baffle_extra_height - baffle_side_cutout_height, 0 ) + baffle_thickness;
 
 // Width of top corner retainers or zero for none (mm)
 baffle_security_retainer_width = 5; // [0:.2:8]
@@ -251,6 +248,10 @@ function baffle_to_top_inside_slant_angle()  = atan2( pri_fan_slant_makeup_dista
 function baffle_to_top_outside_slant_angle() = atan2( pri_fan_slant_makeup_distance, pri_fan_baffle_total_height );
 function baffle_is_slanted() = baffle_to_top_inside_slant_angle() != 0;
 
+// Minimum height of baffle side (mm)
+function baffle_min_height( expansion=[0,0] ) =
+  max( 0, min( baffle_extra_height + min( expansion ), baffle_extra_height - baffle_side_cutout_height ) ) + baffle_thickness;
+
 // show_fan_model: show fan model(s) in position on mount or alone
 module show_fan_model(transparency=0.25) {
   color( "black", transparency ) {
@@ -365,7 +366,7 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
 // instead of being inserted from the rear.
 //
 module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
-  assert( is_list(expansion) && len(expansion) == 2 );
+  assert( is_list(expansion) && len(expansion) == 2 && is_num(expansion[0]) && is_num(expansion[1]) );
 
   // Maximal volume of baffle (with expansion and not including children)
   baffle_maximal_size = baffle_get_area_with_height( fan_spec, baffle_thickness+baffle_extra_height+max(expansion) );
@@ -497,9 +498,10 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 		cube( [ baffle_maximal_size.x, baffle_extra_side, baffle_maximal_size.z ] + [ 2*SMIDGE, 2*SMIDGE, 2*SMIDGE ] );
 	    }
 
-	    // Retainer cut outs in corners
-	    translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
-	      security_retainer_deletion( fan_spec, baffle_security_retainer_width, baffle_security_retainer_offset );
+	    // Security retainer cut outs in corners (if there is space)
+            if( baffle_maximal_size.z - baffle_security_retainer_width - baffle_security_retainer_offset > fan_get_attribute( fan_spec, "width" ) + baffle_thickness ) 
+	      translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
+		security_retainer_deletion( fan_spec, baffle_security_retainer_width, baffle_security_retainer_offset );
 	  }
 
 	  // Attach any children, prior to deletions of space for the fan components
@@ -635,13 +637,12 @@ module dual_mount() {
   // Secondary fan
   {
     // Primary fan size and center position
-    pri_fan_size  = baffle_get_area_with_height( pri_fan_spec, baffle_side_height_min );
-    pri_fan_pos   = pri_fan_get_model_pos();
+    pri_fan_size = baffle_get_area_with_height( pri_fan_spec, baffle_min_height( pri_fan_baffle_expansion ) );
+    pri_fan_pos  = pri_fan_get_model_pos();
 
     // Secondary fan size and center position
-    //
-    sec_fan_size        = baffle_get_area_with_height( sec_fan_spec, baffle_side_height_min );
-    sec_fan_ideal_pos   = sec_fan_get_model_pos();
+    sec_fan_size      = baffle_get_area_with_height( sec_fan_spec, baffle_min_height( sec_fan_baffle_expansion ) );
+    sec_fan_ideal_pos = sec_fan_get_model_pos();
 
     //
     // Limit the width of the model if requested by moving
@@ -721,7 +722,7 @@ else { // shows mount
     dual_mount();
   else
     single_mount();
-//translate( [ 0, 0, 36 ] ) cube( [ 120, 120, 24 ], center=true );
+//translate( [ 0, 0, 23 ] ) rounded_top_cube_upper( [ 400, 400, 40 ], radius=0 );
 //cube( [ 500, 500, 2*6 ], center=true );
 //}
 
