@@ -27,9 +27,6 @@ model = "single"; // [ "single", "dual" ]
 // Show mount (others for debugging)
 show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/machine/axis", "fan", "washer", "washers" ]
 
-// Limit width of model in case of dual mounts (or 0 for no limit)
-model_width_limit = 220; // [195:5:265]
-
 /* [Primary Fan] */
 
 // Primary Fan model
@@ -120,6 +117,9 @@ baffle_security_retainer_width = 5; // [0:.2:8]
 // Offset of top corner retainers (mm)
 baffle_security_retainer_offset = 3; // [2:.2:6]
 
+// Interior angle of sides (degrees)
+baffle_interior_angle = 1.6; // [0:0.1:3]
+
 /* [Grill] */
 
 // Create a grill
@@ -143,7 +143,7 @@ grill_rib_start_angle = 105; // [0:5:360]
 /* [Washer] */
 
 // Thickness of the washer (mm)
-washer_height = 2.0; // [1:0.1:3]
+washer_height = 1.6; // [1:0.1:3]
 
 // Diameter of washer (mm)
 washer_diameter = 10; // [8:1:14]
@@ -366,7 +366,12 @@ module fan_grill( fan_spec, thickness, convexity=10 ) {
 // instead of being inserted from the rear.
 //
 module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
+
   assert( is_list(expansion) && len(expansion) == 2 && is_num(expansion[0]) && is_num(expansion[1]) );
+
+  // Decoration-related boolean tests
+  has_top_attachments  = ($children != 0);
+  has_side_attachments = is_top_loader;
 
   // Maximal volume of baffle (with expansion and not including children)
   baffle_maximal_size = baffle_get_area_with_height( fan_spec, baffle_thickness+baffle_extra_height+max(expansion) );
@@ -418,15 +423,19 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
   //
   module fan_body_deletion( fan_spec ) {
     // Add a little if slanted base - this effectively slopes the bottom all the top tabs
-    extra_height = baffle_is_slanted() ? +20 : 0;
+    extra_height = !has_side_attachments ? +10 : 0;
 
     // Add a little space around the fan
     overfit_area = fan_get_attribute( fan_spec, "area" ) + 2 * [ baffle_overfit_min, baffle_overfit_min ];
     overfit_size = concat( overfit_area, baffle_maximal_size.z - baffle_thickness + baffle_fan_spacing_radius + extra_height );
 
+    // Interior angle of sides
+    interior_y_angle = [ has_top_attachments ? baffle_to_top_inside_slant_angle() : baffle_interior_angle, baffle_interior_angle ];
+    interior_x_angle = has_side_attachments ? [0, 0] : [ baffle_interior_angle, baffle_interior_angle ];
+
     // Carve out volume
     translate( [ 0, 0, +baffle_thickness - SMIDGE ] )
-      slanted_rounded_all_cube( overfit_size + [0,0,2*SMIDGE], baffle_fan_spacing_radius, y_angle=[baffle_to_top_inside_slant_angle(),0] );
+      slanted_rounded_all_cube( overfit_size + [0,0,2*SMIDGE], baffle_fan_spacing_radius, y_angle=interior_y_angle, x_angle=interior_x_angle );
   } // end fan_body_deletion
 
   // side_cutout_deletion:
@@ -472,7 +481,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 	union() {
 	  difference() {
 	    // Baffle frame
-	    slanted_rounded_side_cube( baffle_maximal_size, baffle_radius, y_angle=[baffle_to_top_outside_slant_angle(), 0] );
+	    slanted_rounded_side_cube( baffle_maximal_size, baffle_radius, y_angle=[ has_top_attachments ? baffle_to_top_outside_slant_angle() : 0, 0] );
 
 	    // Delete non-expanded top and/or bottom (assumes half volume is sufficient)
 	    for( i = [0:1] ) {
@@ -489,7 +498,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 	    side_cutout_deletion( fan_spec, [1,3], baffle_side_cutout_offset );
 
             // Mostly decorative beveled cutback on top and bottom of baffle frame if no attachments
-	    if( $children == 0 )
+	    if( !has_top_attachments )
 	      side_cutout_deletion( fan_spec, [2,4], 0 );
 
 	    // Entirely delete the top baffle wall for a top loader
@@ -641,17 +650,10 @@ module dual_mount() {
     pri_fan_pos  = pri_fan_get_model_pos();
 
     // Secondary fan size and center position
-    sec_fan_size      = baffle_get_area_with_height( sec_fan_spec, baffle_min_height( sec_fan_baffle_expansion ) );
-    sec_fan_ideal_pos = sec_fan_get_model_pos();
+    sec_fan_size = baffle_get_area_with_height( sec_fan_spec, baffle_min_height( sec_fan_baffle_expansion ) );
+    sec_fan_pos  = sec_fan_get_model_pos();
 
-    //
-    // Limit the width of the model if requested by moving
-    // secondary fan closer to primary
-    //
-    sec_fan_model_width = model_width( pri_fan_pos, pri_fan_size, sec_fan_ideal_pos, sec_fan_size );
-    sec_fan_pos         = sec_fan_ideal_pos - [ ((model_width_limit > 0) && (sec_fan_model_width > model_width_limit)) ? sec_fan_model_width - model_width_limit : 0, 0 ];
-    if( sec_fan_pos != sec_fan_ideal_pos )
-      echo( "Secondary fan shifted by ", sec_fan_model_width-model_width_limit, " (due to model size limits)" );
+    // State width
     echo( "Total Width = ", model_width( pri_fan_pos, pri_fan_size, sec_fan_pos, sec_fan_size ) );
 
     // Fan
@@ -723,6 +725,7 @@ else { // shows mount
   else
     single_mount();
 //translate( [ 0, 0, 23 ] ) rounded_top_cube_upper( [ 400, 400, 40 ], radius=0 );
+//translate( [ +59, -50, 0 ] ) rounded_top_cube_upper( [ 118, 141, 40 ], radius=0 );
 //cube( [ 500, 500, 2*6 ], center=true );
 //}
 
