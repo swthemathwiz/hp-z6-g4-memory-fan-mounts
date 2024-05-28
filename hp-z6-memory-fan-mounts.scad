@@ -62,7 +62,7 @@ sec_fan_height = +10; // [0:1:60]
 sec_bridge_width  = 6; // [3:1:12]
 
 // Primary to secondary bridge count and offsets (mm)
-sec_bridge_pos = [-5,+10,+25];
+sec_bridge_pos = [-0,+15,+30];
 
 // Trim secondary fan cage depth to fit fan
 sec_baffle_trim_to_fit = true;
@@ -230,8 +230,8 @@ pri_fan_baffle_total_height = pri_baffle_total_size.z + pri_fan_baffle_expansion
 function pri_fan_get_model_pos() = [ 0, 0 ];
 
 // Secondary fan expansion
-sec_fan_baffle_expansion = [ sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.2 - baffle_extra_height : 0,
-                             sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.2 - baffle_extra_height : 0 ];
+sec_fan_baffle_expansion = [ sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.4 - baffle_extra_height : 0,
+                             sec_baffle_trim_to_fit ? fan_get_attribute( sec_fan_spec, "width" ) + 0.4 - baffle_extra_height : 0 ];
 
 // Secondary fan center model position
 function sec_fan_get_model_pos() = [ machine_to_model( machine_second_fan_bottom_front ).x, machine_to_model( machine_second_fan_bottom_front ).y ];
@@ -430,7 +430,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
     overfit_size = concat( overfit_area, baffle_maximal_size.z - baffle_thickness + baffle_fan_spacing_radius + extra_height );
 
     // Interior angle of sides
-    interior_y_angle = [ has_top_attachments ? baffle_to_top_inside_slant_angle() : baffle_interior_angle, baffle_interior_angle ];
+    interior_y_angle = [ has_top_attachments ? baffle_to_top_inside_slant_angle() : baffle_interior_angle, baffle_interior_angle/2 ];
     interior_x_angle = has_side_attachments ? [0, 0] : [ baffle_interior_angle, baffle_interior_angle ];
 
     // Carve out volume
@@ -724,9 +724,9 @@ else { // shows mount
     dual_mount();
   else
     single_mount();
-//translate( [ 0, 0, 23 ] ) rounded_top_cube_upper( [ 400, 400, 40 ], radius=0 );
-//translate( [ +59, -50, 0 ] ) rounded_top_cube_upper( [ 118, 141, 40 ], radius=0 );
-//cube( [ 500, 500, 2*6 ], center=true );
+//translate( [ 0, 0, 23 ] ) rounded_top_cube_upper( [ 400, 400, 40 ], radius=0 ); // Rear slice
+//translate( [ +59, -50, 0 ] ) rounded_top_cube_upper( [ 118, 141, 40 ], radius=0 ); // Bridge slice
+//cube( [ 500, 500, 2*6 ], center=true ); // Center slice
 //}
 
   if( show_selection == "mount/fan" )
