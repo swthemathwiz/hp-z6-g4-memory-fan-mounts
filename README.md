@@ -22,7 +22,7 @@ size past 32GB on a single CPU setup, it's probably sufficient.
 
 ## Model and Parts
 
-Four models are produced:
+Three models are produced:
 
 <div class="model" data-name="HP Z6 G4 Single 80 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-single-80.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-single-80.icon.png" data-left="hp-z6-memory-fan-mount-single-80.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-single-80.stl" target="_blank" title="View HP Z6 G4 Single 80 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-single-80.icon.png" alt="HP Z6 G4 Single 80 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
 
@@ -41,19 +41,10 @@ middle part of an HP Z6 G4 workstation.
 Replaces the single front memory fan with a dual 80-mm fan setup. Installed in the
 area between the drive area and motherboard on an HP Z6 G4 workstation. The
 secondary fan hangs off the primary memory fan and is centered
-on the set of DIMMs between the CPU and PSU. Note that this is a wide model - a little
+close to the set of DIMMs between the CPU and PSU. Note that this is a wide model - a little
 less than 200 mm.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 Dual 80/80 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
-
-<div class="model" data-name="HP Z6 G4 Dual 80/92 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-92.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-92.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-92.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-92.stl" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-92.icon.png" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
-
-### HP Z6 G4 Dual 80/92 Memory Fan Mount
-
-Like the dual 80/80 memory fan mount but with a larger 92-mm secondary fan. This is a same width
-as the 80-mm model, the secondary fan just is larger and closer to the primary.
-
-</td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/92 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-92.installed.jpg" alt="HP Z6 G4 Dual 80/92 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
 <div class="model" data-name="Countersunk Washers" data-icon-size="128" data-right="hp-z6-memory-fan-mount-washers.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.stl" target="_blank" title="View Countersunk Washers Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.icon.png" alt="Countersunk Washers Model" width="128" height="128" /></a></td><td>
 
@@ -117,28 +108,19 @@ reaching the fan.
 
 The dual mount adds an additional fan that hangs off the primary
 mount. So in addition to everything necessary for the [primary](#primary)
-mount, you need a second fan and a fan adapter cable, which you have to build.
+mount, you'll be adding a second fan connected to a fan adapter cable, which you
+have to build.
 
-### A Second 80- or 92-mm Fan and Four More Case Fan Screws
+### A Second 80-mm Fan and Four More Case Fan Screws
 
 For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
 PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
 
 For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
 a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
-plentiful on ebay. Other choices are listed [above](#fan80).
-
-For a 92-mm secondary fan, here are some HP-compatible fans I've
-seen on ebay:
-
-- Foxconn PV902512PSPF (0.40A) from HP/Compaq DCxx00 (HP: 435452-001, 432768-001, 451144-001)
-- Nidec T92T12MS3A7-57A03 (0.35A) from the Zxx0 series (HP: 647113-001 Rev. B, 749598-001, and 782506-001)
-- Delta QUR0912VH (0.60A) from the Z4x0 series (HP: 647113-001 Rev. A)
-- Foxconn PVA092G12H (0.40A) from the Z2x0 series (HP: 727135-001)
-- Delta AUB0912HH (0.40A) (HP: 411456-001)
-
-In any case, choose a secondary fan with a cable long enough to
-reach your fan adapter cable (about 6 inches for the above setup).
+plentiful on ebay. Other choices are listed [above](#fan80).  In any case, choose a
+secondary fan with a cable long enough to reach your fan adapter cable (about 6 inches
+for the above setup).
 
 See above for recommendations on the [case fan screws](#screws).
 
@@ -288,16 +270,16 @@ clean-up the print with utility knife.
 
 The fan mounts are built using OpenSCAD. *hp-z6-memory-fan-mount-single-80.scad* is the main
 file for the single fan model. *hp-z6-memory-fan-mount-dual-80-80.scad* and
-*hp-z6-memory-fan-mount-dual-80-92.scad* build dual fan models with
-secondary fan sizes of 80 mm or 92 mm respectively. Most of the code
-and settings are found in *hp-z6-memory-fan-mounts.scad*.
+builds the dual fan model with secondary fan sizes of 80 mm. *hp-z6-memory-fan-mount-washers.scad*
+builds the washers. Most of the code and settings are found in *hp-z6-memory-fan-mounts.scad* with
+the main files only selecting which model is built.
 
 ### Fan Models
 
 Models are used to visualize and verify the relative positions of holes and
 mounts during debugging but not necessary for building. This project uses
-80- and 92-mm fan models created from [Delta](https://www.delta-fan.com)
-fan models. They were converted from STEP to stl format using
+80-mm fan model created from [Delta](https://www.delta-fan.com)
+fan models. The fan models were converted from STEP to stl format using
 [IMAGEtoSTL](https://imagetostl.com/convert/file/stp/to/stl). The full set of
 fan models referenced in the source are:
 
