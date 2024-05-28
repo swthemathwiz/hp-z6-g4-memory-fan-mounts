@@ -508,7 +508,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 	    }
 
 	    // Security retainer cut outs in corners (if there is space)
-            if( baffle_maximal_size.z - baffle_security_retainer_width - baffle_security_retainer_offset > fan_get_attribute( fan_spec, "width" ) + baffle_thickness ) 
+            if( baffle_maximal_size.z - baffle_security_retainer_width - baffle_security_retainer_offset > fan_get_attribute( fan_spec, "width" ) + baffle_thickness )
 	      translate( [ 0, is_top_loader ? -baffle_effective_side_thickness/2 : 0, 0 ] )
 		security_retainer_deletion( fan_spec, baffle_security_retainer_width, baffle_security_retainer_offset );
 	  }
