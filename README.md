@@ -18,7 +18,16 @@ difficult to disassemble and reassemble your machine on a frequent basis. In
 all these cases, you may wish to go in a different direction.
 
 With all that said if you wish to add a DIMM or increase your memory
-size past 32GB on a single CPU setup, it's probably sufficient.
+size past 32GB on a single CPU setup, it's probably sufficient (but use
+your own judgment).
+
+If you attempt to boot a larger memory configuration and are missing a fan or two,
+the relevant HP Post Error messages you will encounter are:
+
+- **517 Memory configuration requires a Memory fan and this fan is not detected.**: You
+need a fan connected to both the rear (shroud) connector
+- **520 Memory configuration requires Memory fan(2) and this fan is not detected.**: You
+need a fan connector to the front connector
 
 ## Model and Parts
 
