@@ -115,19 +115,19 @@ reaching the fan.
 
 ## What You'll Need for the Dual Mount <a name="secondary"/>
 
-The dual mount adds an additional fan that hangs off the primary
-mount. So in addition to everything necessary for the [primary](#primary)
-mount, you'll be adding a second fan connected to a fan adapter cable, which you
-have to build.
+The dual mount adds an additional secondary fan that hangs off the primary
+mount. So in addition to everything necessary for the [primary mount](#primary),
+you'll be adding a second fan connected to a fan adapter cable - a
+cable which you'll have to build.
 
 ### A Second 80-mm Fan and Four More Case Fan Screws
 
 For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
 PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
 
-For an 80-mm secondary fan, the Foxconn PVA080G12Q that matches the primary fan, with
-a PC- or HP-style connector, seems like a safe and obvious choice. They are cheap and
-plentiful on ebay. Other choices are listed [above](#fan80).  In any case, choose a
+For the 80-mm secondary fan, the Foxconn PVA080G12Q matches the primary fan, with
+a PC- or HP-style connector, and seems like a safe and obvious choice. They are cheap and
+plentiful on ebay. Other choices are listed [above](#fan80). In any case, choose a
 secondary fan with a cable long enough to reach your fan adapter cable (about 6 inches
 for the above setup).
 
@@ -254,7 +254,7 @@ clean-up the print with utility knife.
       cables are routed nearest to connectors.
     - Screw fans to the front of the mount with case fan screws thru countersunk washers.
 
-    <p align="center"><img src="../media/media/assembled.jpg" alt="Fan with Mount Assembled"  height="350px" /></p>
+    <p align="center"><img src="../media/media/assembled.jpg" alt="Fan with Mount Assembled" height="350px" /></p>
 
 5.  Install the mount in the computer. If you removed the OEM fan, then
     the installation is essential the reverse. The easiest sequence seems
