@@ -116,7 +116,7 @@ reaching the fan.
 ## What You'll Need for the Dual Mount <a name="secondary"/>
 
 The dual mount adds an additional secondary fan that hangs off the primary
-mount. So in addition to everything necessary for the [primary mount](#primary),
+mount. So in addition to everything necessary for the [single mount](#primary),
 you'll be adding a second fan connected to a fan adapter cable - a
 cable which you'll have to build.
 
