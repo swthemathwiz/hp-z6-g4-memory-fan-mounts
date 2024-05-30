@@ -79,7 +79,7 @@ If you want to connect a PC-style PWM fan to an HP-style motherboard header, you
 need to modify the connector. You can do this either by shaving the middle key
 on the PC-style connector or by transplanting the terminals to an HP-style connector.
 
-## What You'll Need for the Single Mount <a named="primary"/>
+## What You'll Need for the Single Mount <a name="primary"/>
 
 If you're missing a front memory fan, then you'll need a fan. Otherwise, you can
 reuse the existing fan and get case fan screws.
