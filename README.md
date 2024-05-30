@@ -2,32 +2,36 @@
 
 ## Introduction
 
-These are 3D-Printable [OpenSCAD](https://openscad.org/) models to
-mount memory fans in an HP Z6 G4 workstation. These are in no way endorsed by HP.
-Also, the author is not responsible for any damage resulting from their use.
+These are 3D-Printable [OpenSCAD](https://openscad.org/) models to mount
+memory fans in an HP Z6 G4 workstation. These are in no way endorsed by
+HP. Also, the author is not responsible for any damage resulting from
+their use.
 
 <p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 with Dual Front Fan Mount"  height="350px" /></p>
 
-## Caveats
-
-This isn't an exact replacement for HP's memory shroud; it does not
-guarantee sufficient air flow in all cases. It's also a tight fit, and
-if you use your upper 5 1/4" drive area it may be impossible to use.
+The mounts aren't an exact replacements for HP's fans or memory shroud;
+they do not guarantee sufficient air flow in all cases; they have not
+been tested under most conditions. The dual mount is also a tight fit,
+and if you use the upper 5 1/4" drive area it may be impossible to use.
 Also, it doesn't work with a second CPU. Finally, it can make it more
-difficult to disassemble and reassemble your machine on a frequent basis. In
-all these cases, you may wish to go in a different direction.
-
-With all that said if you wish to add a DIMM or increase your memory
-size past 32GB on a single CPU setup, it's probably sufficient (but use
-your own judgment).
+difficult to disassemble and reassemble your machine on a frequent
+basis. In all these cases, you may wish to go in a different direction.
+With all that said, if you wish to add a couple DIMMs or increase your
+memory size past 32GB on a single CPU setup, it's probably sufficient.
+Use your own judgment.
 
 If you attempt to boot a larger memory configuration and are missing a fan or two,
 the relevant HP Post Error messages you will encounter are:
 
-- **517 Memory configuration requires a Memory fan and this fan is not detected.**: You
+- **517 Memory configuration requires a Memory fan and this fan is not detected**: You
 need a fan connected to both the rear (shroud) connector
-- **520 Memory configuration requires Memory fan(2) and this fan is not detected.**: You
+- **520 Memory configuration requires Memory fan(2) and this fan is not detected**: You
 need a fan connector to the front connector
+
+Adding fan(s) will workaround these problems. You can do it without
+modifications to your motherboard or cabling by adding the appropriate
+single or dual mount. Alternatively, You can also use the cable without
+the mount to add a second fan elsewhere.
 
 ## Model and Parts
 
