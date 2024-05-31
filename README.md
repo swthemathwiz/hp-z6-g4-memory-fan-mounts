@@ -296,8 +296,10 @@ fan models. The fan models were converted from STEP to stl format using
 [IMAGEtoSTL](https://imagetostl.com/convert/file/stp/to/stl). The full set of
 fan models referenced in the source are:
 
-- 92 mm x 25 mm Fan: file _Delta-AFB0912HH.STL_ from [Delta AFB0912HH](https://www.delta-fan.com/AFB0912HH.html)
 - 80 mm x 25 mm Fan: file _Delta-AFB0812HH.STL_ from [Delta AFB0812HH](https://www.delta-fan.com/AFB0812HH.html)
+- 80 mm x 20 mm Fan: file _Delta-AFB0812HHD-A.STL_ from [Delta AFB0812HHD-A](https://www.delta-fan.com/AFB0812HHD-A.html)
+- 80 mm x 15 mm Fan: file _Delta-AFB0812HB.STL_ from [Delta AFB0812HB](https://www.delta-fan.com/AFB0812HB.html)
+- 92 mm x 25 mm Fan: file _Delta-AFB0912HH.STL_ from [Delta AFB0912HH](https://www.delta-fan.com/AFB0912HH.html)
 - 120 mm x 25 mm Fan: file _Delta-AFB1212HH.STL_ from [Delta AFB1212HH](https://www.delta-fan.com/AFB1212HH.html)
 
 ## Also Available on Thingiverse

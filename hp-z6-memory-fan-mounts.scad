@@ -30,7 +30,7 @@ show_selection = "mount"; // [ "mount", "mount/fan", "mount/machine", "mount/mac
 /* [Primary Fan] */
 
 // Primary Fan model
-pri_fan_model = "80x80x25"; // [ "80x80x25", "92x92x25", "120x120x25" ]
+pri_fan_model = "80x80x25"; // [ "80x80x25", "80x80x20", "80x80x15", "92x92x25", "120x120x25" ]
 
 // Primary Fan specifications
 pri_fan_spec = fan_get_spec( pri_fan_model );
@@ -47,7 +47,7 @@ pri_thumbnail_offset = 6;
 /* [Secondary Fan] */
 
 // Secondary Fan model
-sec_fan_model = "80x80x25"; // [ "80x80x25", "92x92x25", "120x120x25" ]
+sec_fan_model = "80x80x25"; // [ "80x80x25", "80x80x20", "80x80x15", "92x92x25", "120x120x25" ]
 
 // Secondary Fan specifications
 sec_fan_spec = fan_get_spec( sec_fan_model );

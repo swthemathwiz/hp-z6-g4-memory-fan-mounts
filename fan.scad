@@ -173,6 +173,40 @@ fan_specifications = [
       [ "rotation", [ -90, 0, 0 ] ]
     ] ]
   ] ],
+  // Non-Standard - 80x80x20mm fan
+  [ "80x80x20", [
+    [ "name", "80x80x20" ],
+    [ "side", 80.0 ],
+    [ "width", 20.0 ],
+    [ "area", [ 80.0, 80.0 ] ],
+    [ "volume", [ 80.0, 80.0, 20.0 ] ],
+    [ "screw_hole_diameter", 4.5 ],
+    [ "screw_hole_side", 71.5 ],
+    [ "frame_thickness", 4 ],
+    [ "air_hole_side", 77.5 ],
+    [ "air_hole_diameter", 87 ],
+    [ "model", [
+      [ "filename", "Delta-AFB0812HHD-A.STL" ],
+      [ "rotation", [ +90, 0, 0 ] ]
+    ] ]
+  ] ],
+  // Non-Standard - 80x80x15mm fan
+  [ "80x80x15", [
+    [ "name", "80x80x15" ],
+    [ "side", 80.0 ],
+    [ "width", 15.0 ],
+    [ "area", [ 80.0, 80.0 ] ],
+    [ "volume", [ 80.0, 80.0, 15.0 ] ],
+    [ "screw_hole_diameter", 4.5 ],
+    [ "screw_hole_side", 71.5 ],
+    [ "frame_thickness", 3 ],
+    [ "air_hole_side", 77.5 ],
+    [ "air_hole_diameter", 87 ],
+    [ "model", [
+      [ "filename", "Delta-AFB0812HB.STL" ],
+      [ "rotation", [ +90, 0, 0 ] ]
+    ] ]
+  ] ],
   // Standard - 92x92x25mm fan
   [ "92x92x25", [
     [ "name", "92x92x25" ],
