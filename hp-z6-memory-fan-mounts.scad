@@ -128,6 +128,9 @@ grill_add = true;
 // Layout grills of different fan sizes geometrically similar
 grill_normalize = true;
 
+// Thickness of grill (mm)
+grill_thickness = baffle_thickness; // [1:0.1:5];
+
 // Width of the lines of the grill (mm)
 grill_line_width = 2.2; // [1:0.1:5];
 
@@ -523,7 +526,7 @@ module baffle( fan_spec, expansion=[0,0], is_top_loader=false ) {
 
       // Add the grill after air-hole deletion and before body/hole deletion
       if( grill_add )
-	fan_grill( fan_spec, baffle_thickness );
+	fan_grill( fan_spec, grill_thickness );
     }
 
     // Slightly-oversized hole for fan
