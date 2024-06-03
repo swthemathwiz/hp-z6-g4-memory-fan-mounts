@@ -51,11 +51,11 @@ middle part of an HP Z6 G4 workstation.
 
 ### HP Z6 G4 Dual 80/80 Memory Fan Mount
 
-Replaces the single front memory fan with a dual 80-mm fan setup. Installed in the
-area between the drive area and motherboard on an HP Z6 G4 workstation. The
-secondary fan hangs off the primary memory fan and is centered
-close to the set of DIMMs between the CPU and PSU. Note that this is a wide model - a little
-less than 200 mm.
+Replaces the single front memory fan with a dual 80-mm fan setup.
+Installed in the area between the drive area and motherboard on an HP Z6
+G4 workstation. The secondary fan hangs off the primary memory fan and
+is centered close to the set of DIMMs between the CPU and PSU. Note that
+this is a wide model - a little less than 200 mm.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 Dual 80/80 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
@@ -63,8 +63,8 @@ less than 200 mm.
 
 ### Countersunk Washers
 
-This is a set of 4 countersunk washers used to secure fans
-in the mounts using fan screws. They make the fan screws flush.
+This is a set of 4 countersunk washers used to secure fans in the mounts
+using fan screws. They make the fan screws flush.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" target="_blank" title="View Countersunk Washers Installed"><img src="../media/media/hp-z6-memory-fan-mount-washers.installed.jpg" alt="Countersunk Washers Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
@@ -76,12 +76,13 @@ Newer fans come with black wires and a white connector (e.g. [Molex 22-01-3047](
 These connectors are polarized - both ends of the connector have small ribs. They differ from
 4-pin PC-style PWM fans which have a 3+1 keying (see [Molex 47054-1000](https://www.molex.com/en-us/products/part-detail/470541000)).
 
-Electrically, PC- and HP-style signals are compatible
-and are in the same order: Ground, +12 VDC, RPM Sense, PWM Control.
+Electrically, PC- and HP-style signals are compatible and are in the
+same order: Ground, +12 VDC, RPM Sense, PWM Control.
 
-If you want to connect a PC-style PWM fan to an HP-style motherboard header, you
-need to modify the connector. You can do this either by shaving the middle key
-on the PC-style connector or by transplanting the terminals to an HP-style connector.
+If you want to connect a PC-style PWM fan to an HP-style motherboard
+header, you need to modify the connector. You can do this either by
+shaving the middle key on the PC-style connector or by transplanting the
+terminals to an HP-style connector.
 
 ## What You'll Need for the Single Mount <a name="primary"/>
 
@@ -92,48 +93,54 @@ reuse the existing fan and get case fan screws.
 
 <img src="../media/media/fan.jpg" alt="Fan" align="right" width="250px" height="250px" />
 
-Generally, if you don't have a stock fan, you'll want to buy (or scavenge) an
-HP-compatible 80 mm x 25 mm PWM +12 VDC fan that has an HP-specific 4-pin
-connector and a cable length of about 3 inches or more.
+Generally, if you don't have a stock front memory fan, you'll want to
+buy (or scavenge) an HP-compatible 80 mm x 25 mm PWM +12 VDC fan that
+has an HP-specific 4-pin connector and a cable length of about 3 inches
+or more.
 
-The stock memory fan is a Foxconn PVA080G12Q (0.65A max, 0.35A nominal)
-(HP: 907246-001) +12 VDC PWM fan. Note that this fan is very common on ebay with
-PC-style connector, so make sure you know what you're getting into. 80-mm fans with
-the HP-style connector seem somewhat rare, so you might be stuck ordering
-a stock fan. Some 80-mm fans I spotted with an HP-style connector:
+The stock fan is a Foxconn PVA080G12Q (0.65A max, 0.35A nominal) (HP:
+907246-001) +12 VDC PWM fan. Note that this fan is very common on ebay
+with PC-style connector, so make sure you know what you're getting into.
+80-mm fans with the HP-style connector seem somewhat rare, so you might
+be stuck ordering a stock fan. Some 80-mm fans I spotted with an
+HP-style connector:
 
 - AVC DL08025R12U (0.50A) from HP 400 G3 SFF series (both styles)
 - FOXCONN PVA080G12R (0.80A) (various styles)
 
-I reused the stock fan and have not tested any other fans as the primary
+I reused the stock fan and have not tested any other fans as a primary
 memory fan.
 
 ### Four Case Fan Screws <a name="screws"/>
 
 <img src="../media/media/screws.jpg" alt="Case Fan Screws" align="right" width="60px" height="60px" />
 
-These seem more or less standard - silver or black, about 10 mm in length, very
-coarse thread. Make sure these are on the long side since they have
-to go through 4 mm of plastic instead of 1 to 2 mm of metal before
-reaching the fan.
+These seem more or less standard - silver or black, about 10 mm in
+length, very coarse thread. Make sure these are on the long side since
+they have to go through 4 mm of plastic instead of 1 to 2 mm of metal
+before reaching the fan.
 
 ## What You'll Need for the Dual Mount <a name="secondary"/>
 
-The dual mount adds an additional secondary fan that hangs off the primary
-mount. So in addition to everything necessary for the [single mount](#primary),
-you'll be adding a second fan connected to a fan adapter cable - a
-cable which you'll have to build.
+The dual mount adds an additional secondary fan that hangs off the
+primary mount. So in addition to everything necessary for the [single
+mount](#primary), you'll be adding a second fan connected to a fan
+adapter cable - a cable which you'll have to build.
 
 ### A Second 80-mm Fan and Four More Case Fan Screws
 
-For reference, the HP Z6 memory shroud contains a single blower-style fan. The OEM fan is a Foxconn
-PVB090G12L-P01-AB +12 VDC (0.88A max, 0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
+For reference, the HP Z6 memory shroud contains a single blower-style
+fan. The OEM fan is a Foxconn PVB090G12L-P01-AB +12 VDC (0.88A max,
+0.70A nominal) 90-mm PWM Fan (HP: 907245-001).
 
-For the 80-mm secondary fan, the Foxconn PVA080G12Q matches the primary fan, with
-a PC- or HP-style connector, and seems like a safe and obvious choice. They are cheap and
-plentiful on ebay. Other choices are listed [above](#fan80). In any case, choose a
-secondary fan with a cable long enough to reach your fan adapter cable (about 6 inches
-for the above setup).
+For the 80-mm secondary fan, the Foxconn PVA080G12Q matches the primary
+fan, with a PC- or HP-style connector, and seems like a safe and obvious
+choice. They are cheap and plentiful on ebay. Other choices are listed
+[above](#fan80). In any case, choose a secondary fan with a cable long
+enough to reach your fan adapter cable (about 6 inches with my
+constructed fan adapter cable). The rear of the secondary fan ends up
+very close (~1 mm) to the rear of the disk caddies, so you might prefer
+an 80-mm fan with a width of 20 or 15 mm.
 
 See above for recommendations on the [case fan screws](#screws).
 
@@ -159,11 +166,11 @@ direction - left = case rear, up = case top):
 <p align="center"><img src="../media/media/pinout.jpg" alt="Z6 Shroud MEMFAN Pinout" height="350px" /></p>
 
 We can connect a 2x2 [Molex 43025-0400](https://www.molex.com/en-us/products/part-detail/430250400)
-to the header and bring the signals out to a "standard" fan connector by building a
-cable. Because the header is a BMI part, it is not designed for locking so you'll need to
-remove the connector's lock to insert it. The connector is polarized
-correctly to the mating part; it fits in only one orientation. It seems reasonably secure
-without the lock.
+to the header and bring the signals out to a "standard" fan connector by
+building a cable. Because the header is a BMI part, it is not designed
+for locking so you'll need to remove the connector's lock to insert it.
+The connector is polarized correctly to the mating part; it fits in only
+one orientation. It seems reasonably secure without the lock.
 
 I purchased a pre-crimped Molex Micro-Fit 3.0 pig-tail cable and crimped
 a 4-Pin fan housing on to the other end using parts from Aliexpress:
@@ -178,24 +185,24 @@ a 4-Pin fan housing on to the other end using parts from Aliexpress:
   accepts the HP-style fan connectors. The housing is [LHE C2505-HB04 / 5240B-4A](https://www.lhecn.com/wp-content/uploads/2019/01/C2505C250652405102-1.pdf)
   and is sometimes referred incorrectly as Molex 2540.
 
-Cut off the lock on the Molex connector, observe the orientation of the connector
-when plugged in to the motherboard, and map the pin numbering to the above
-pinout (for me, Motherboard {1,2,3,4} → Wire {Black, Red, White, Yellow} → Fan
-{Ground, +12 VDC, RPM Sense, PWM Control}) based on the header [pinout](#pinout).
-Crimp on the fan connectors, insert the pins into the fan housing
-in the correct positions ([PWM fan reference pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
+Cut off the lock on the Molex connector, observe the orientation of the
+connector when plugged in to the motherboard, and map the pin numbering
+to the above pinout (for me, Motherboard {1,2,3,4} → Wire {Black, Red,
+White, Yellow} → Fan {Ground, +12 VDC, RPM Sense, PWM Control}) based on
+the header [pinout](#pinout).  Crimp on the fan connectors, insert the
+pins into the fan housing in the correct positions ([PWM fan reference pinout](https://allpinouts.org/pinouts/connectors/motherboards/motherboard-cpu-4-pin-fan/)),
 and you get something like this:
 
 <p align="center"><img src="../media/media/cable.jpg" alt="Z6 G4 Shroud MEMFAN to Fan Cable" height="200px" /></p>
 
 Test your cable by connecting a known-working 4-pin PWM fan to the
-motherboard. The Z6's BIOS automatically detects the fan from the RPM Sense
-input.
+motherboard. The Z6's BIOS automatically detects the fan from the RPM
+Sense input.
 
-On Linux kernel > 6.5, verify fan presence detect and RPM by using lm-sensors and
-the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
-"Memory Fan0" is for the fan connected to the shroud header and "Memory Fan1" is
-for the front fan:
+On Linux kernel > 6.5, verify fan presence detect and RPM by using
+lm-sensors and the [hp-wmi-sensors module](https://www.phoronix.com/news/HP-WMI-Sensors-Linux-Driver).
+"Memory Fan0" is for the fan connected to the shroud header and
+"Memory Fan1" is for the front fan:
 
 ```shell
 % sudo modprobe hp-wmi-sensors
@@ -217,15 +224,15 @@ presence and RPM under "Your Computer" → "System Sensors".
 
 ## Printing
 
-For the washers, print from PLA with a **layer height of 0.12 mm** and **infill density of 50%**
-or higher. Print one set of washers per fan.
+For the washers, print from PLA with a **layer height of 0.12 mm** and
+**infill density of 50%** or higher. Print one set of washers per fan.
 
-For the mounts, print from PLA with a **layer height of 0.2 mm**
-and **infill density of 20%** with **support generation**. In Cura, I
-set "Support Placement" to "Touching Build Plate" and "Support Overhang Angle" set
-to 45 degrees (the default). After printing, remove the generated supports
-(at least 4 pieces: two under the bottom tangs, two under the top tabs) and
-clean-up the print with utility knife.
+For the mounts, print from PLA with a **layer height of 0.2 mm** and
+**infill density of 20%** with **support generation**. In Cura, I set
+"Support Placement" to "Touching Build Plate" and "Support Overhang
+Angle" set to 45 degrees (the default). After printing, remove the
+generated supports (at least 4 pieces: two under the bottom tangs, two
+under the top tabs) and clean-up the print with utility knife.
 
 ## Installation
 
@@ -289,12 +296,12 @@ the main files only selecting which model is built.
 
 ### Fan Models
 
-Models are used to visualize and verify the relative positions of holes and
-mounts during debugging but not necessary for building. This project uses
-80-mm fan model created from [Delta](https://www.delta-fan.com)
-fan models. The fan models were converted from STEP to stl format using
-[IMAGEtoSTL](https://imagetostl.com/convert/file/stp/to/stl). The full set of
-fan models referenced in the source are:
+Models are used to visualize and verify the relative positions of holes
+and mounts during debugging but not necessary for building. This project
+uses 80-mm fan model created from [Delta](https://www.delta-fan.com) fan
+models. The fan models were converted from STEP to stl format using
+[IMAGEtoSTL](https://imagetostl.com/convert/file/stp/to/stl). The full
+set of fan models referenced in the source are:
 
 - 80 mm x 25 mm Fan: file _Delta-AFB0812HH.STL_ from [Delta AFB0812HH](https://www.delta-fan.com/AFB0812HH.html)
 - 80 mm x 20 mm Fan: file _Delta-AFB0812HHD-A.STL_ from [Delta AFB0812HHD-A](https://www.delta-fan.com/AFB0812HHD-A.html)
