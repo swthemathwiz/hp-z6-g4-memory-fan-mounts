@@ -47,20 +47,6 @@ middle part of an HP Z6 G4 workstation.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" target="_blank" title="View HP Z6 G4 Single 80 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" alt="HP Z6 G4 Single 80 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
-<div class="model" data-name="HP Z6 G4 Dual 80/80x25 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-80x25.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-80x25.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.stl" target="_blank" title="View HP Z6 G4 Dual 80/80x25 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.icon.png" alt="HP Z6 G4 Dual 80/80x25 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
-
-### HP Z6 G4 Dual 80/80x25 Memory Fan Mount
-
-Replaces the single front memory fan with a dual 80-mm fan setup. The
-secondary fan width is 25 mm which places the rear of the mount (and
-fan) very close to the disk caddies. Installed in the area between the
-drive area and motherboard on an HP Z6 G4 workstation. The secondary fan
-hangs off the primary memory fan and is centered close to the set of
-DIMMs between the CPU and PSU. Note that this is a wide model - a little
-less than 200 mm.
-
-</td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80x25 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" alt="HP Z6 G4 Dual 80/80x25 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
-
 <div class="model" data-name="HP Z6 G4 Dual 80/80x20 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-80x20.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-80x20.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-80x20.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x20.stl" target="_blank" title="View HP Z6 G4 Dual 80/80x20 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x20.icon.png" alt="HP Z6 G4 Dual 80/80x20 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
 
 ### HP Z6 G4 Dual 80/80x20 Memory Fan Mount
@@ -74,6 +60,20 @@ to the set of DIMMs between the CPU and PSU. Note that this is a wide
 model - a little less than 200 mm.
 
 </td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x20.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80x20 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x20.installed.jpg" alt="HP Z6 G4 Dual 80/80x20 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
+
+<div class="model" data-name="HP Z6 G4 Dual 80/80x25 Memory Fan Mount" data-icon-size="128" data-right="hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-dual-80-80x25.icon.png" data-left="hp-z6-memory-fan-mount-dual-80-80x25.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.stl" target="_blank" title="View HP Z6 G4 Dual 80/80x25 Memory Fan Mount Model"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.icon.png" alt="HP Z6 G4 Dual 80/80x25 Memory Fan Mount Model" width="128" height="128" /></a></td><td>
+
+### HP Z6 G4 Dual 80/80x25 Memory Fan Mount
+
+Replaces the single front memory fan with a dual 80-mm fan setup. The
+secondary fan width is 25 mm which places the rear of the mount (and
+fan) very close to the disk caddies. Installed in the area between the
+drive area and motherboard on an HP Z6 G4 workstation. The secondary fan
+hangs off the primary memory fan and is centered close to the set of
+DIMMs between the CPU and PSU. Note that this is a wide model - a little
+less than 200 mm.
+
+</td><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" target="_blank" title="View HP Z6 G4 Dual 80/80x25 Memory Fan Mount Installed"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" alt="HP Z6 G4 Dual 80/80x25 Memory Fan Mount Installed" width="128" height="128" /></a></td></tr></tbody></table></div>
 
 <div class="model" data-name="Countersunk Washers" data-icon-size="128" data-right="hp-z6-memory-fan-mount-washers.installed.jpg" data-left-icon="hp-z6-memory-fan-mount-washers.icon.png" data-left="hp-z6-memory-fan-mount-washers.stl"><!-- expanded by annotate-model --><table align="center" width="100%"><tbody><tr width="100%"><td align="center" width="160" height="160"><a href="../media/media/hp-z6-memory-fan-mount-washers.stl" target="_blank" title="View Countersunk Washers Model"><img src="../media/media/hp-z6-memory-fan-mount-washers.icon.png" alt="Countersunk Washers Model" width="128" height="128" /></a></td><td>
 
@@ -165,7 +165,7 @@ For an 80x80x20 mm secondary fan, the AVC DASA0820R2U
 cheap and plentiful on ebay.
 
 I tested both the Foxconn PVA080G12Q and AVC DASA0820R2U as secondary
-fans and both worked well. I preferred the 20 mm thickness.
+fans and both worked well. I preferred the 20-mm width.
 
 See above for recommendations on the [case fan screws](#screws).
 
