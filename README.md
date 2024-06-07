@@ -287,7 +287,7 @@ under the top tabs) and clean-up the print with utility knife.
       cables are routed nearest to connectors.
     - Screw fans to the front of the mount with case fan screws thru countersunk washers.
 
-    <p align="center"><img src="../media/media/assembled.jpg" alt="Fan with Mount Assembled" height="350px" /></p>
+    <p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.assembled.jpg" alt="Fan with Mount Assembled" height="350px" /></p>
 
 5.  Install the mount in the computer. If you removed the OEM fan, then
     the installation is essential the reverse. The easiest sequence seems
@@ -295,7 +295,7 @@ under the top tabs) and clean-up the print with utility knife.
     cases slots, push the top tabs down a little and push the top tabs into
     the top slots. Verify a tight and secure fit.
 
-    <p align="center"><img src="../media/media/hp-z6-memory-fan-mount-single-80.installed.jpg" alt="Fan with Mount Installed"  height="350px" /></p>
+    <p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" alt="Fan with Mount Installed"  height="350px" /></p>
 
 6.  For added security, you can add a twist-tie (or wire) from the
     mount to the case at one of these locations: through the top
