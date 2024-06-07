@@ -15,7 +15,8 @@ PNGCRUSH = pngcrush -brute
 SRCS = \
 	hp-z6-memory-fan-mounts.scad \
 	hp-z6-memory-fan-mount-single-80.scad \
-	hp-z6-memory-fan-mount-dual-80-80.scad \
+	hp-z6-memory-fan-mount-dual-80-80x25.scad \
+	hp-z6-memory-fan-mount-dual-80-80x20.scad \
 	hp-z6-memory-fan-mount-washers.scad \
 	hp-z6-catch-bottom.scad \
 	hp-z6-catch-top.scad \
@@ -29,7 +30,8 @@ SRCS = \
 
 BUILDS = \
 	hp-z6-memory-fan-mount-single-80.scad \
-	hp-z6-memory-fan-mount-dual-80-80.scad \
+	hp-z6-memory-fan-mount-dual-80-80x25.scad \
+	hp-z6-memory-fan-mount-dual-80-80x20.scad \
 	hp-z6-memory-fan-mount-washers.scad \
 
 EXTRAS = \
