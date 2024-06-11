@@ -7,7 +7,7 @@ memory fans in an HP Z6 G4 workstation. These are in no way endorsed by
 HP. Also, the author is not responsible for any damage resulting from
 their use.
 
-<p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80.installed.jpg" alt="HP Z6 G4 with Dual Front Fan Mount"  height="350px" /></p>
+<p align="center"><img src="../media/media/hp-z6-memory-fan-mount-dual-80-80x25.installed.jpg" alt="HP Z6 G4 with Dual Front Fan Mount"  height="350px" /></p>
 
 The mounts aren't an exact replacements for HP's fans or memory shroud;
 they do not guarantee sufficient air flow in all cases; they have not
