@@ -157,12 +157,12 @@ primary fan, with a PC- or HP-style connector, and seems like a safe and
 obvious choice. They are cheap and plentiful on ebay. Other choices are
 listed [above](#fan80x25).
 
-For an 80x80x20 mm secondary fan, the AVC DASA0820R2U
-(0.60A) +12 VDC PWM fan (Dell: 05NPYY) with a PC-style connector is
+For an 80x80x20 mm secondary fan, the Foxconn PVA080F12R (0.36A) / AVC DASA0820R2U
+(0.60A) +12 VDC PWM fan (both Dell: 05NPYY) with a PC-style connector is
 cheap and plentiful on ebay.
 
-I tested both the Foxconn PVA080G12Q and AVC DASA0820R2U as secondary
-fans and both worked well. I preferred the 20-mm width.
+I tested both the Foxconn PVA080G12Q and PVA080F12R as secondary
+fans and both worked well. I preferred the 20-mm width for the spacing.
 
 See above for recommendations on the [case fan screws](#screws).
 
