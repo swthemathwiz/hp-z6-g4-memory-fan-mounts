@@ -140,7 +140,7 @@ primary mount. So in addition to everything necessary for the [single
 mount](#primary), you'll be adding a second fan connected to a fan
 adapter cable - a cable which you'll have to build.
 
-### A Second 80-mm Fan and Four More Case Fan Screws
+### A Second 80-mm Fan
 
 For reference, the HP Z6 memory shroud contains a single blower-style
 fan. The OEM fan is a Foxconn PVB090G12L-P01-AB +12 VDC (0.88A max,
@@ -163,6 +163,8 @@ cheap and plentiful on ebay.
 
 I tested both the Foxconn PVA080G12Q and PVA080F12R as secondary
 fans and both worked well. I preferred the 20-mm width for the spacing.
+
+### Four More Case Fan Screws
 
 See above for recommendations on the [case fan screws](#screws).
 
