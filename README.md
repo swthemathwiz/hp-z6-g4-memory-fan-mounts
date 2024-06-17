@@ -21,14 +21,14 @@ memory size past 32GB on a single CPU setup, it's probably sufficient.
 Use your own judgment.
 
 If you attempt to boot a larger memory configuration and are missing a fan or two,
-the relevant HP Post Error messages you will encounter are:
+the relevant HP Post Error messages you may encounter are:
 
 - **517 Memory configuration requires a Memory fan and this fan is not detected**: You
-need a fan connected to both the rear (shroud) connector
+need a fan connected to the rear (shroud) connector
 - **520 Memory configuration requires Memory fan(2) and this fan is not detected**: You
-need a fan connector to the front connector
+need a fan connected to the front connector
 
-Adding fan(s) will workaround these problems. You can do it without
+Adding fan(s) may workaround these problems. You can do it without
 modifications to your motherboard or cabling by adding the appropriate
 single or dual mount. Alternatively, You can also use the cable without
 the mount to add a second fan elsewhere.
