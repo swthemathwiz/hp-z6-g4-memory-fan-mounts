@@ -29,8 +29,9 @@ need a fan connected to the rear (shroud) connector
 need a fan connected to the front connector
 
 Adding fan(s) may workaround these problems. You can do it without
-modifications to your motherboard or cabling by adding the appropriate
-single or dual mount. Alternatively, You can also use the cable without
+modifying your workstation's motherboard or existing cabling by adding a
+3D-printed single fan mount or a dual fan mount with a constructed
+cable. Alternatively, for the later case, you can use the cable without
 the mount to add a second fan elsewhere.
 
 ## Model and Parts
