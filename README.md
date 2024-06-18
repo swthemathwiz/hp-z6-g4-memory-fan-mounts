@@ -338,4 +338,4 @@ set of fan models referenced in the source are:
 
 ## Also Available on Thingiverse
 
-STLs are available on [Thingiverse](https://www.thingiverse.com/thing:).
+STLs are available on [Thingiverse](https://www.thingiverse.com/thing:6666435).
